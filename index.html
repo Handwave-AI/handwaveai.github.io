@@ -992,11 +992,11 @@
       <p class="cta-sub">
         If your organization has the problem we described, we want to talk.
       </p>
-      <form class="email-form" onsubmit="handleSubmit(event)">
-        <input type="email" class="email-input" placeholder="your@email.com" required id="email-field">
+      <form class="email-form" action="https://formspree.io/f/mdajpzyy" method="POST">
+        <input type="email" name="email" class="email-input" placeholder="your@email.com" required>
         <button type="submit" class="email-submit">Get in touch</button>
       </form>
-      <p class="form-note" id="form-message">No pitch. We'll reach out to understand your situation first.</p>
+      <p class="form-note">No pitch. We'll reach out to understand your situation first.</p>
     </div>
   </section>
 
@@ -1027,18 +1027,3 @@
     setTimeout(() => {
       document.querySelectorAll('.hero .fade-up').forEach(el => el.classList.add('visible'));
     }, 100);
-
-    // Form handler
-    function handleSubmit(e) {
-      e.preventDefault();
-      const email = document.getElementById('email-field').value;
-      const msg = document.getElementById('form-message');
-      msg.textContent = 'Got it — we\'ll be in touch shortly.';
-      msg.style.color = 'rgba(255,255,255,0.7)';
-      document.getElementById('email-field').value = '';
-      // TODO: wire to backend / Formspree / Netlify Forms
-    }
-  </script>
-
-</body>
-</html>
