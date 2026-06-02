@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Handwave AI — Anyone Can Be a Data Team</title>
+  <title>Handwave AI — You don't want a data warehouse. You want answers.</title>
   <meta name="description" content="Enterprise-grade data infrastructure for small businesses. The analytics platform your board has been asking for — without the 18-month project.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -409,7 +409,7 @@
 
     .pillars {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(4, 1fr);
       gap: 24px;
     }
 
@@ -462,6 +462,19 @@
       font-size: 0.9rem;
       color: var(--ink-mid);
       line-height: 1.65;
+      font-weight: 300;
+    }
+
+    .pricing-anchor {
+      text-align: center;
+      margin-top: 48px;
+      font-size: 1rem;
+      font-weight: 500;
+      color: var(--ink);
+    }
+
+    .pricing-anchor span {
+      color: var(--ink-light);
       font-weight: 300;
     }
 
@@ -770,7 +783,7 @@
   <nav>
     <a href="/" class="nav-logo">Handwave <span>AI</span></a>
     <a href="#early-access" class="nav-cta">
-      Get in touch
+      Request an early access conversation
       <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
         <path d="M2 7h10M7 2l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
       </svg>
@@ -790,7 +803,7 @@
       </p>
       <div class="hero-actions">
         <a href="#early-access" class="btn-primary">
-          Get in touch
+          Request an early access conversation
           <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
             <path d="M3 8h10M8 3l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
@@ -802,11 +815,11 @@
     <div class="hero-right fade-up" style="transition-delay: 0.15s">
       <div class="stat-card">
         <div class="stat-value">$500k–$2M</div>
-        <div class="stat-label">Average cost of a traditional EDW creation project — before anyone runs it</div>
+        <div class="stat-label">Industry average cost of a traditional EDW creation project — before anyone runs it</div>
       </div>
       <div class="stat-card">
         <div class="stat-value">18 mo.</div>
-        <div class="stat-label">Typical time to first usable output from a traditional data warehouse build</div>
+        <div class="stat-label">Industry average time to first usable output from a traditional data warehouse build</div>
       </div>
       <div class="stat-card">
         <div class="stat-value">Days</div>
@@ -869,7 +882,7 @@
             <rect x="3" y="5" width="14" height="10" rx="2" stroke="currentColor" stroke-width="1.5"/>
             <path d="M7 5V4a1 1 0 011-1h4a1 1 0 011 1v1" stroke="currentColor" stroke-width="1.5"/>
           </svg>
-          Your internal analyst time goes to pulling reports, not analyzing them. Every cycle.
+          Every quarter someone spends two weeks building a presentation instead of running the business — because the data is not ready.
         </li>
       </ul>
     </div>
@@ -919,6 +932,23 @@
           <h3>Managed. Nothing for you to run.</h3>
           <p>No internal IT ownership. No data engineer to hire. No pipeline to maintain. Your data comes to us via standard connectors — no firewall changes, no network configuration. We own the infrastructure, the pipeline, and the governance. You own the insights.</p>
         </div>
+
+        <div class="pillar fade-up" style="transition-delay: 0.3s">
+          <div class="pillar-number">04</div>
+          <div class="pillar-icon">
+            <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+              <circle cx="8" cy="8" r="4" stroke="currentColor" stroke-width="1.5"/>
+              <circle cx="14" cy="14" r="4" stroke="currentColor" stroke-width="1.5"/>
+              <path d="M11 8h3M8 11v3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <h3>One guest. Every source. One record.</h3>
+          <p>A unified golden guest record that resolves identity across every system you run — so you know exactly who your guest is, regardless of where the data came from.</p>
+        </div>
+      </div>
+
+      <div class="pricing-anchor fade-up">
+        Starting at $3,000/month. <span>No setup fee. No long-term contract required.</span>
       </div>
     </div>
   </section>
@@ -978,7 +1008,7 @@
   <section class="principle">
     <div class="principle-inner fade-up">
       <p class="principle-quote">
-        "Complexity is conserved — it cannot be removed, only moved. Handwave AI moves it <em>out of your organization entirely.</em>"
+        "Complexity is conserved — it cannot be removed, only moved. <em>Handwave AI moves it where it belongs — into governed infrastructure you do not have to build or maintain.</em>"
       </p>
       <div class="principle-attr">Aaron Nelson, CEO — Handwave AI</div>
     </div>
@@ -988,13 +1018,13 @@
   <section class="cta-section" id="early-access">
     <div class="cta-inner fade-up">
       <div class="section-label" style="color: var(--warm)">Get started</div>
-      <h2 class="cta-headline">Anyone can be a data team.</h2>
+      <h2 class="cta-headline">You don't want a data warehouse. You want answers.</h2>
       <p class="cta-sub">
         If your organization has the problem we described, we want to talk.
       </p>
       <form class="email-form" id="contact-form">
         <input type="email" name="email" class="email-input" placeholder="your@email.com" required>
-        <button type="submit" class="email-submit">Get in touch</button>
+        <button type="submit" class="email-submit">Request an early access conversation</button>
       </form>
       <p class="form-note" id="form-note">No pitch. We'll reach out to understand your situation first.</p>
     </div>
@@ -1046,13 +1076,13 @@
           this.innerHTML = "<p style=\"color:rgba(255,255,255,0.85);font-size:1rem;padding:14px 0\">Got it — we will be in touch shortly.</p>";
           note.style.display = "none";
         } else {
-          btn.textContent = "Get in touch";
+          btn.textContent = "Request an early access conversation";
           btn.disabled = false;
           note.textContent = "Something went wrong — email us directly at aaron.nelson@handwaveai.com";
           note.style.color = "rgba(255,100,100,0.9)";
         }
       } catch(err) {
-        btn.textContent = "Get in touch";
+        btn.textContent = "Request an early access conversation";
         btn.disabled = false;
         note.textContent = "Something went wrong — email us directly at aaron.nelson@handwaveai.com";
         note.style.color = "rgba(255,100,100,0.9)";
