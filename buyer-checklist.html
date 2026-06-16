@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Handwave AI — Before you spend a dollar on fixing your data: a buyer's checklist</title>
+  <meta name="description" content="A practical, vendor-neutral checklist for evaluating consultants, platforms, and managed services to fix your data — including when a managed service is the wrong answer.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --ink:       #1a2744;
+      --ink-mid:   #3d4e6b;
+      --ink-light: #7a8499;
+      --paper:     #ece8e0;
+      --paper-mid: #e4dfd6;
+      --accent:    #1a2744;
+      --accent-lt: #e8ecf4;
+      --warm:      #c8956b;
+      --warm-lt:   #f9f0e8;
+      --white:     #ffffff;
+      --rule:      rgba(15,17,23,0.12);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      background: var(--paper);
+      color: var(--ink);
+      font-size: 17px;
+      line-height: 1.65;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 12px 48px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: rgba(236,232,224,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--rule);
+    }
+    .nav-logo {
+      font-family: 'DM Serif Display', Georgia, 'Times New Roman', serif;
+      font-size: 1.25rem; color: var(--ink); letter-spacing: -0.01em; text-decoration: none;
+    }
+    .nav-logo span { color: var(--accent); }
+    .nav-cta {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: #1a2744; color: var(--white);
+      font-size: 0.875rem; font-weight: 500; letter-spacing: 0.01em;
+      padding: 10px 20px; border-radius: 4px; text-decoration: none;
+      transition: background 0.2s, transform 0.15s;
+    }
+    .nav-cta:hover { transform: translateY(-1px); }
+
+    .article-hero {
+      padding: 180px 48px 16px;
+      max-width: 820px; margin: 0 auto;
+      position: relative; z-index: 1;
+    }
+    .eyebrow {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-size: 0.78rem; font-weight: 500; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--warm); margin-bottom: 24px;
+    }
+    .eyebrow::before { content: ''; display: inline-block; width: 20px; height: 1px; background: var(--warm); }
+    .article-title {
+      font-family: 'DM Serif Display', Georgia, 'Times New Roman', serif;
+      font-size: clamp(2.1rem, 3.6vw, 3rem);
+      line-height: 1.14; letter-spacing: -0.02em; color: var(--ink);
+    }
+
+    .article-body {
+      max-width: 720px; margin: 0 auto;
+      padding: 24px 48px 40px;
+      position: relative; z-index: 1;
+    }
+    .article-body p {
+      font-size: 1.1rem; font-weight: 300; color: var(--ink-mid);
+      line-height: 1.8; margin-bottom: 22px;
+    }
+    .article-body p strong { font-weight: 500; color: var(--ink); }
+    .article-body em { font-style: italic; color: var(--ink); }
+    .lead {
+      font-size: 1.22rem !important; color: var(--ink) !important; line-height: 1.7 !important;
+    }
+
+    .article-body h2 {
+      font-family: 'DM Serif Display', Georgia, 'Times New Roman', serif;
+      font-size: clamp(1.5rem, 2.4vw, 1.95rem);
+      line-height: 1.2; letter-spacing: -0.015em; color: var(--ink);
+      margin: 44px 0 18px;
+    }
+
+    .q {
+      background: var(--white);
+      border: 1px solid var(--rule);
+      border-left: 3px solid var(--warm);
+      border-radius: 6px;
+      padding: 20px 24px;
+      margin-bottom: 16px;
+    }
+    .q .qq {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.15rem; color: var(--ink); margin-bottom: 8px; line-height: 1.3;
+    }
+    .q p { font-size: 1rem; margin-bottom: 0; }
+
+    .flag-list { list-style: none; margin: 0 0 22px; padding: 0; }
+    .flag-list li {
+      position: relative;
+      padding: 12px 18px 12px 40px;
+      margin-bottom: 10px;
+      background: var(--white);
+      border: 1px solid var(--rule);
+      border-radius: 6px;
+      font-size: 1rem; font-weight: 300; color: var(--ink-mid); line-height: 1.55;
+    }
+    .flag-list li strong { color: var(--ink); font-weight: 500; }
+    .flag-list.red li::before {
+      content: '×'; position: absolute; left: 16px; top: 11px;
+      color: #b04a3a; font-size: 1.1rem; font-weight: 600;
+    }
+    .flag-list.green li::before {
+      content: '✓'; position: absolute; left: 16px; top: 12px;
+      color: #4a7a5a; font-size: 0.95rem; font-weight: 600;
+    }
+
+    .note-line {
+      font-size: 1.02rem; font-style: italic; color: var(--ink-mid);
+      line-height: 1.7; margin: 4px 0 22px; padding-left: 4px;
+    }
+
+    .wrong-block {
+      background: var(--warm-lt);
+      border: 1px solid var(--rule);
+      border-radius: 8px;
+      padding: 28px 28px 8px;
+      margin: 8px 0 22px;
+    }
+    .wrong-block li { background: transparent; border: none; padding-left: 28px; }
+    .wrong-block li::before { content: '—'; position: absolute; left: 6px; top: 12px; color: var(--warm); }
+
+    .test-block {
+      background: #1a2744; color: var(--white);
+      border-radius: 10px; padding: 40px 40px;
+      margin: 32px 0;
+    }
+    .test-block h2 { color: var(--white); margin-top: 0; }
+    .test-block p { color: rgba(255,255,255,0.82); }
+    .test-block .opt { color: var(--white); font-weight: 500; }
+
+    .divider-rule { width: 100%; height: 1px; background: var(--rule); margin: 40px 0; border: none; }
+
+    .close-block {
+      background: var(--white);
+      border: 1px solid var(--rule);
+      border-left: 3px solid var(--warm);
+      border-radius: 8px;
+      padding: 28px 28px;
+    }
+    .close-block p { font-size: 1.05rem; margin-bottom: 18px; }
+    .close-block .brand { font-family: 'DM Serif Display', serif; color: var(--ink); }
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: #1a2744; color: var(--white);
+      font-size: 0.95rem; font-weight: 500;
+      padding: 14px 28px; border-radius: 4px; text-decoration: none;
+      transition: transform 0.15s, box-shadow 0.2s;
+      box-shadow: 0 4px 16px rgba(26,39,68,0.2);
+    }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(26,39,68,0.28); }
+    .btn-primary svg { transition: transform 0.2s; }
+    .btn-primary:hover svg { transform: translateX(3px); }
+
+    footer {
+      background: #1a2744; color: rgba(255,255,255,0.6);
+      padding: 56px 48px;
+      display: flex; flex-direction: column; align-items: center; gap: 20px;
+      text-align: center; position: relative; z-index: 1; margin-top: 64px;
+    }
+    .footer-logo img { height: 120px; width: auto; display: block; }
+    .footer-links { display: flex; gap: 28px; }
+    .footer-links a { color: rgba(255,255,255,0.75); text-decoration: none; font-size: 0.9rem; }
+    .footer-links a:hover { color: var(--white); }
+    .footer-copy { font-size: 0.82rem; color: rgba(255,255,255,0.45); }
+
+    @media (max-width: 700px) {
+      nav { padding: 12px 24px; }
+      .article-hero { padding: 150px 24px 12px; }
+      .article-body { padding: 20px 24px 40px; }
+      .test-block, .wrong-block { padding: 28px 22px; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="/" class="nav-logo"><img src="handwave_logo.png" alt="Handwave AI" style="height: 120px; width: auto; display: block;"></a>
+    <div style="display:flex; align-items:center; gap:24px;">
+      <a href="/" style="color:var(--ink); text-decoration:none; font-size:0.9rem; font-weight:500;">&larr; Back to Handwave AI</a>
+      <a href="/#early-access" class="nav-cta">Become a development partner</a>
+    </div>
+  </nav>
+
+  <div class="article-hero">
+    <div class="eyebrow">Buyer's checklist</div>
+    <h1 class="article-title">Before you spend a dollar on fixing your data</h1>
+  </div>
+
+  <article class="article-body">
+
+    <p class="lead">You're about to evaluate consultants, platforms, or services to fix your data. The quotes are big and the claims all sound similar. This is a short, practical guide to telling a real fix from an expensive disappointment — written from the buyer's side of the table, not the seller's.</p>
+
+    <p>The single question underneath all of it: <strong>after the money is spent, who is left holding the complexity?</strong> If the answer is "you," you've bought a dependency, not a solution. Everything below is a way to find that out <em>before</em> you sign.</p>
+
+    <h2>Five questions to ask any vendor</h2>
+    <p>Ask these directly. How they answer tells you more than their pitch deck.</p>
+
+    <div class="q">
+      <div class="qq">1. "After this is built, who runs it day to day?"</div>
+      <p>If the answer is "you do" or "your team does," and you don't have a data team, you're about to inherit something you can't operate. Listen for whether they keep running it or hand it over and leave.</p>
+    </div>
+    <div class="q">
+      <div class="qq">2. "What happens when one of my source systems changes its export or adds a field?"</div>
+      <p>Your systems <em>will</em> change. If the answer is hand-wavy, or "we'd scope a change request," you've found the thing that will break in six months and cost you every time. A real answer describes how change is handled as a matter of course, not as a new project.</p>
+    </div>
+    <div class="q">
+      <div class="qq">3. "Do I have to clean up or migrate my data before we start?"</div>
+      <p>If yes, you're signing up for a rip-and-replace project on top of the fix — more cost, more risk, more time before any value. The better answer is that they take your data as it is, mess and all, and resolve it on the way in.</p>
+    </div>
+    <div class="q">
+      <div class="qq">4. "When two systems disagree about the same customer, who decides which is right, and can I see why?"</div>
+      <p>This is the heart of the actual work. If they can't explain how conflicts get resolved and how you'd audit that decision, they're moving your data, not governing it. "It just merges them" is a confident-looking wrong answer — that's how two different people get fused into one record.</p>
+    </div>
+    <div class="q">
+      <div class="qq">5. "If I leave, what do I walk away with?"</div>
+      <p>This is the question that separates a service from a trap, and almost nobody asks it. The answer you want: "all of your data, with its full history, in a format you choose, any time." The answer that should worry you: anything where leaving means losing your data, or getting it back in a form you can't use. Depending on a vendor is fine. Being unable to leave one is not.</p>
+    </div>
+
+    <h2>Red flags that a fix will leave you holding the bag</h2>
+    <ul class="flag-list red">
+      <li><strong>The price is a big one-time number.</strong> One-time pricing usually means one-time involvement. The complexity outlives the engagement; the support doesn't.</li>
+      <li><strong>"Migration" or "implementation" is a major line item.</strong> That's the rip-and-replace project disguised as setup. Real value shouldn't require you to tear out what works first.</li>
+      <li><strong>They demo a dashboard before they explain how the data underneath gets trustworthy.</strong> A pretty dashboard on top of unresolved data just makes a wrong number look confident.</li>
+      <li><strong>They can't tell you how the same customer across four systems becomes one record.</strong> That collapse — many messy records into one trustworthy entity — <em>is</em> the job. If it's vague, they haven't solved it.</li>
+      <li><strong>You can't get a straight answer about leaving.</strong> If "what do I walk away with" produces a pause, assume the answer is "not much," and assume that's by design.</li>
+      <li><strong>Everything depends on the specific people in the room.</strong> If the knowledge lives in their consultants' heads, it leaves when they do.</li>
+    </ul>
+
+    <h2>Green flags that you're looking at a real fix</h2>
+    <ul class="flag-list green">
+      <li>They take your data <strong>as-is</strong> — no pre-cleanup, no migration project.</li>
+      <li>They can clearly explain <strong>how conflicts get resolved</strong> and how you'd audit a decision.</li>
+      <li>They stay responsible for <strong>keeping it running</strong>, not just standing it up.</li>
+      <li>Pricing is <strong>predictable and ongoing</strong> — you're paying for a result that's maintained, not a project that ends.</li>
+      <li>Source-system changes are <strong>handled as routine</strong>, not billed as surprises.</li>
+      <li><strong>Your data stays yours</strong> — you can take all of it, with history, any time, in a usable format.</li>
+    </ul>
+    <p class="note-line">A strong consultant or a well-run platform will hit some of these too; that's a good sign, not a catch. The difference is whether they're all still true in month twelve, when the consultant has moved on and the platform still needs someone to run it.</p>
+
+    <h2>When a managed service is the <em>wrong</em> answer</h2>
+    <p>In the interest of an honest checklist: a managed service isn't always the right call, and any vendor who won't tell you that is selling, not advising.</p>
+    <div class="wrong-block">
+      <ul class="flag-list">
+        <li><strong>You already have a capable data team and the appetite to own your infrastructure.</strong> Then a platform you run yourself may be the better long-term economics. Buy the engine; you have the driver.</li>
+        <li><strong>You have a single, bounded, one-time job</strong> — a migration, a cleanup, a specific build with a clear end and no ongoing need. Then a good consultant is the cleaner path. Don't sign up for a monthly relationship to solve a one-time problem.</li>
+        <li><strong>Your data genuinely doesn't change and isn't fragmented.</strong> If you have one clean source and one question, you may not need any of this. Don't buy infrastructure for a problem you don't have.</li>
+      </ul>
+    </div>
+    <p>A managed service earns its keep when the mess is ongoing, the sources keep changing, and you don't want to hire a team to wrestle it. If that's not you, the honest answer is one of the other paths.</p>
+
+    <div class="test-block">
+      <h2>The one-line test</h2>
+      <p>Picture yourself twelve months from now. Is the data still trustworthy <em style="color:#fff">without you having become its caretaker</em>?</p>
+      <p><span class="opt">If yes</span> — you found a real fix.<br>
+      <span class="opt">If you'd be the one keeping it alive</span> — you found another expense.</p>
+      <p style="margin-bottom:0">That's the whole decision. Everything else is detail.</p>
+    </div>
+
+    <div class="divider-rule"></div>
+
+    <div class="close-block">
+      <p><span class="brand">Handwave AI.</span> We built a managed data service around exactly these green flags: we take your data as it is, resolve it into one governed and trustworthy view, and keep it that way. Choosing us means depending on us — and your data stays yours the entire time. If you ever leave, you take all of it with you; you just stop getting the resolution we do on top of it. That's the deal, stated plainly.</p>
+      <a href="/#early-access" class="btn-primary">
+        If this is the column you want to be in, let's talk
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M8 3l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+    </div>
+
+  </article>
+
+  <footer>
+    <a href="/" class="footer-logo"><img src="handwave_logo.png" alt="Handwave AI"></a>
+    <div class="footer-links">
+      <a href="https://linkedin.com/company/handwaveai" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="mailto:aaron.nelson@handwaveai.com">Contact</a>
+    </div>
+    <div class="footer-copy">© 2026 Handwave AI Inc.</div>
+  </footer>
+
+</body>
+</html>

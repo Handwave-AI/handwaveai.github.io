@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Handwave AI — You don't have a data problem. You have a data-is-everywhere problem.</title>
+  <meta name="description" content="You want to run your business better and your data is scattered across systems that don't talk. Here's how to actually fix it — and how to choose between a consultant, a platform, and a managed service.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --ink:       #1a2744;
+      --ink-mid:   #3d4e6b;
+      --ink-light: #7a8499;
+      --paper:     #ece8e0;
+      --paper-mid: #e4dfd6;
+      --accent:    #1a2744;
+      --accent-lt: #e8ecf4;
+      --warm:      #c8956b;
+      --warm-lt:   #f9f0e8;
+      --white:     #ffffff;
+      --rule:      rgba(15,17,23,0.12);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      background: var(--paper);
+      color: var(--ink);
+      font-size: 17px;
+      line-height: 1.65;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 12px 48px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: rgba(236,232,224,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .nav-logo {
+      font-family: 'DM Serif Display', Georgia, 'Times New Roman', serif;
+      font-size: 1.25rem;
+      color: var(--ink);
+      letter-spacing: -0.01em;
+      text-decoration: none;
+    }
+    .nav-logo span { color: var(--accent); }
+
+    .nav-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: #1a2744;
+      color: var(--white);
+      font-size: 0.875rem;
+      font-weight: 500;
+      letter-spacing: 0.01em;
+      padding: 10px 20px;
+      border-radius: 4px;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.15s;
+    }
+    .nav-cta:hover { transform: translateY(-1px); }
+
+    /* ── ARTICLE ── */
+    .article-hero {
+      padding: 180px 48px 56px;
+      max-width: 820px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.78rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--warm);
+      margin-bottom: 24px;
+    }
+    .eyebrow::before {
+      content: '';
+      display: inline-block;
+      width: 20px; height: 1px;
+      background: var(--warm);
+    }
+
+    .article-title {
+      font-family: 'DM Serif Display', Georgia, 'Times New Roman', serif;
+      font-size: clamp(2.3rem, 4vw, 3.4rem);
+      line-height: 1.12;
+      letter-spacing: -0.02em;
+      color: var(--ink);
+      margin-bottom: 8px;
+    }
+
+    .article-body {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 0 48px 40px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .article-body p {
+      font-size: 1.12rem;
+      font-weight: 300;
+      color: var(--ink-mid);
+      line-height: 1.8;
+      margin-bottom: 24px;
+    }
+    .article-body p strong { font-weight: 500; color: var(--ink); }
+    .article-body em { font-style: italic; color: var(--ink); }
+
+    .article-body h2 {
+      font-family: 'DM Serif Display', Georgia, 'Times New Roman', serif;
+      font-size: clamp(1.6rem, 2.6vw, 2.1rem);
+      line-height: 1.2;
+      letter-spacing: -0.015em;
+      color: var(--ink);
+      margin: 48px 0 20px;
+    }
+
+    .article-body ul {
+      list-style: none;
+      margin: 0 0 24px;
+      padding: 0;
+    }
+    .article-body li {
+      position: relative;
+      padding: 14px 20px 14px 48px;
+      margin-bottom: 12px;
+      background: var(--white);
+      border: 1px solid var(--rule);
+      border-radius: 6px;
+      font-size: 1.02rem;
+      font-weight: 300;
+      color: var(--ink-mid);
+      line-height: 1.6;
+    }
+    .article-body li strong { color: var(--ink); font-weight: 500; }
+    .article-body li::before {
+      content: '';
+      position: absolute;
+      left: 22px; top: 24px;
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: var(--warm);
+    }
+
+    .lead {
+      font-size: 1.25rem !important;
+      color: var(--ink) !important;
+      line-height: 1.7 !important;
+    }
+
+    .divider-rule {
+      width: 100%;
+      height: 1px;
+      background: var(--rule);
+      margin: 48px 0;
+      border: none;
+    }
+
+    /* ── CLOSING / CTA ── */
+    .close-block {
+      background: #1a2744;
+      color: var(--white);
+      border-radius: 10px;
+      padding: 48px 44px;
+      margin: 8px 0 0;
+    }
+    .close-block .section-label {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-size: 0.78rem; font-weight: 500; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--warm); margin-bottom: 20px;
+    }
+    .close-block .section-label::before {
+      content: ''; display: inline-block; width: 20px; height: 1px; background: var(--warm);
+    }
+    .close-block p {
+      color: rgba(255,255,255,0.82);
+      font-size: 1.08rem;
+      font-weight: 300;
+      line-height: 1.75;
+      margin-bottom: 20px;
+    }
+    .close-block p strong { color: var(--white); font-weight: 500; }
+    .close-block .brand {
+      font-family: 'DM Serif Display', Georgia, serif;
+      font-size: 1.4rem;
+      color: var(--white);
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--warm);
+      color: #1a2744;
+      font-size: 0.95rem;
+      font-weight: 500;
+      padding: 14px 28px;
+      border-radius: 4px;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      margin-top: 8px;
+      transition: transform 0.15s, box-shadow 0.2s;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.18);
+    }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.26); }
+    .btn-primary svg { transition: transform 0.2s; }
+    .btn-primary:hover svg { transform: translateX(3px); }
+
+    .checklist-link {
+      display: block;
+      margin: 8px 0 0;
+      padding: 20px 24px;
+      background: var(--warm-lt);
+      border: 1px solid var(--rule);
+      border-radius: 8px;
+      text-decoration: none;
+      color: var(--ink);
+      transition: transform 0.15s, box-shadow 0.2s;
+    }
+    .checklist-link:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(15,17,23,0.1); }
+    .checklist-link .cl-label { font-size: 0.78rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--warm); font-weight: 500; }
+    .checklist-link .cl-title { font-family: 'DM Serif Display', serif; font-size: 1.2rem; margin: 6px 0 4px; color: var(--ink); }
+    .checklist-link .cl-sub { font-size: 0.95rem; font-weight: 300; color: var(--ink-mid); }
+
+    /* ── FOOTER ── */
+    footer {
+      background: #1a2744;
+      color: rgba(255,255,255,0.6);
+      padding: 56px 48px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+      text-align: center;
+      position: relative;
+      z-index: 1;
+      margin-top: 64px;
+    }
+    .footer-logo img { height: 120px; width: auto; display: block; }
+    .footer-links { display: flex; gap: 28px; }
+    .footer-links a { color: rgba(255,255,255,0.75); text-decoration: none; font-size: 0.9rem; }
+    .footer-links a:hover { color: var(--white); }
+    .footer-copy { font-size: 0.82rem; color: rgba(255,255,255,0.45); }
+
+    @media (max-width: 700px) {
+      nav { padding: 12px 24px; }
+      .article-hero { padding: 150px 24px 40px; }
+      .article-body { padding: 0 24px 40px; }
+      .close-block { padding: 36px 28px; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="/" class="nav-logo"><img src="handwave_logo.png" alt="Handwave AI" style="height: 120px; width: auto; display: block;"></a>
+    <div style="display:flex; align-items:center; gap:24px;">
+      <a href="/" style="color:var(--ink); text-decoration:none; font-size:0.9rem; font-weight:500;">&larr; Back to Handwave AI</a>
+      <a href="/#early-access" class="nav-cta">Become a development partner</a>
+    </div>
+  </nav>
+
+  <div class="article-hero">
+    <div class="eyebrow">A field guide</div>
+    <h1 class="article-title">You don't have a data problem. You have a data-is-everywhere problem.</h1>
+  </div>
+
+  <article class="article-body">
+
+    <p class="lead">Say a customer named Robert Hayes does business with you. Here's how he actually exists in your systems right now:</p>
+
+    <ul>
+      <li>Your point-of-sale has <strong>Bob Hayes</strong>, phone on file, no email.</li>
+      <li>Your email tool has <strong>rhayes@example.com</strong>, no phone, signed up under <strong>R. Hayes</strong>.</li>
+      <li>Your booking or scheduling system has <strong>Robert Hayes</strong>, a different email, and a typo'd last name from a rushed entry: <strong>Hayse</strong>.</li>
+      <li>A spreadsheet someone keeps has him twice, because they couldn't tell the records apart.</li>
+    </ul>
+
+    <p>That's one human being, showing up as five records across four systems, and <em>not one of those systems knows about the other three</em>. When you ask "how many customers do we have," every system gives a different answer, and all of them are wrong. When you try to measure anything — repeat visits, lifetime value, who to email — you're counting Robert four times or missing him entirely.</p>
+
+    <p>Multiply that by every customer, every system, every export that breaks when a format changes. That's the thing standing between you and running your business better. It isn't messy data; it's <em>disconnected</em> data. The information is fine. Nothing knows how to line it up.</p>
+
+    <p>You probably already knew that, roughly. What you wanted was to fix it. And when you looked into fixing it, it was discouraging: big quotes, long timelines, and a suspicion you couldn't shake — <em>I'm going to spend a lot on this and not get much back.</em></p>
+
+    <p>You're right to be suspicious. Most attempts to fix this are expensive and disappointing. But not for the reason you think, and once you see the real reason, the decision gets clearer.</p>
+
+    <h2>It's normal</h2>
+
+    <p>You bought a tool to take payments. Another to send email. Another to manage bookings, inventory, cases, students, properties — whatever your business runs on. Each one solved a real problem the day you bought it. None was built to know about the others. So the same entity fragments across all of them, your totals never reconcile, and the spreadsheet built to tie it together broke the third time something changed upstream.</p>
+
+    <p>I've watched this exact pattern in resorts, in utilities, in restaurants, in insurance carriers, in real estate firms, and in school districts. Different industries, different software, identical mess. The systems multiply, the data fragments, and the complexity collects in the gaps between tools that were never meant to cooperate. It is the most common condition in business, and almost nobody escapes it on their own.</p>
+
+    <h2>What "fixed" actually looks like</h2>
+
+    <p>Fixed doesn't mean a prettier dashboard. It means those five scattered records for Robert Hayes get <em>resolved</em>: the system recognizes that Bob Hayes, R. Hayes, Robert Hayes, and Robert Hayse are one person, decides which details are correct when they disagree, and produces <strong>one trustworthy record</strong> — one Robert, with his real email, his real phone, his full history, linked back to every system he came from.</p>
+
+    <p>Do that for every entity, keep it current as new data flows in, and govern it so the rules are consistent and auditable, and now "how many customers do we have" has one answer. "Who's about to churn" is answerable. "Did that campaign work" is answerable. Your tools didn't change. The thing underneath them finally tells the truth.</p>
+
+    <p>That's the actual product. Not a tool you stare at — a single, governed, trustworthy view of your business that everything else can finally rely on.</p>
+
+    <h2>Why the usual fixes disappoint</h2>
+
+    <p>When you go looking for help, you'll mostly find two options. Both can work. Both also tend to leave you worse off than promised, and it's worth knowing why.</p>
+
+    <p><strong>Hire a consultant or agency.</strong> Often genuinely good. They'll study your systems and build you something that works. Then they leave. And you're holding a thing you don't fully understand, that needs maintenance you can't do, that breaks when a source system changes, with nobody in the building who knows how to fix it. You paid for a solution and inherited a dependency. The value walked out with the people who built it.</p>
+
+    <p><strong>Buy a platform.</strong> A data warehouse, a customer data platform, a BI suite. Powerful software, and on a good day it does everything the brochure says. But none of it runs itself. Someone has to configure it, feed it, watch it, and govern it — and that someone is a technical hire you may not have, on a salary that can dwarf the software. If you already had that person, you probably wouldn't have the mess. The platform isn't the answer; it's a bet that you'll go build the answer yourself.</p>
+
+    <p>Both leave the <em>complexity</em> on your plate — the consultant hands you something to maintain, the platform hands you something to operate. Neither takes the problem off your hands. They change its shape and hand it back. That's why you keep paying and the relief never quite arrives.</p>
+
+    <h2>The thing nobody tells you about complexity</h2>
+
+    <p>Complexity doesn't disappear. It can't be deleted, only moved. Anyone who promises to make it <em>go away</em> is misunderstanding the problem or selling you something.</p>
+
+    <p>The honest question isn't "how do I get rid of it?" It's "where should it live, and who's responsible for it?" Right now it lives in the gaps between your systems, and the answer is <em>you</em> — you absorb every reconciliation, every broken export, every "which number is right?" The consultant and the platform both, in the end, leave it with you.</p>
+
+    <p>There's a third option that puts the complexity somewhere it's genuinely governed and keeps it there. But it has a cost too, and the honest thing is to name it.</p>
+
+    <h2>The third option, and what it actually costs you</h2>
+
+    <p>Instead of buying a tool or renting a team, you can have the whole thing run as a service. Your data gets pulled from wherever it already lives, resolved into one trustworthy view, governed, and <em>kept that way</em> — month after month — by people whose job is to keep it healthy. You don't hire the team. You don't maintain the system. You get the governed result for a predictable monthly cost instead of a daunting project price.</p>
+
+    <p>Here's the cost, stated plainly, because every option in this guide has one: <strong>you're trading the work for a dependency on a vendor.</strong> You're trusting someone else to keep doing the thing you stopped doing yourself. A vendor can raise prices, get acquired, or quietly let quality slip. That's a real tradeoff, and you should choose the relationship as carefully as you'd choose anyone you're going to rely on.</p>
+
+    <p>So here's how to choose it well: <strong>make sure your data stays yours.</strong> That's the line between a service and a trap, and not every vendor stays on the right side of it — some do hold your data hostage, and it's worth checking before you sign. When the door's left open, the deal is fair: you can take every source, with its full history, in whatever format you want, any time you ask. If you leave, you walk out with your data intact; what you'd give up is the resolution itself, the work of keeping it tied together and trustworthy. You'd have your data back; you'd just be holding the complexity again. You're not buying your way out of complexity — nobody can sell you that. You're hiring someone to hold it for you, and you can stop whenever you want.</p>
+
+    <p>There's also a part that surprises people, because it's the opposite of what the other two options demand: <strong>you don't have to clean it up or migrate anything to start.</strong> The dread that fixing this means a giant rip-and-replace — that's the assumption that makes the whole category feel like a money pit. With a service built to take your data as-is, that project doesn't exist. You point your messy sources at it, exactly as they are, and the mess gets resolved on the way in.</p>
+
+    <h2>How to actually decide</h2>
+
+    <p>Strip the sales language and it comes down to one question: <strong>after the money is spent, who is holding the complexity?</strong></p>
+
+    <ul>
+      <li>"Me, because the people who built it left." &nbsp;→&nbsp; the consultant path.</li>
+      <li>"Me, because the software needs operators I don't have." &nbsp;→&nbsp; the platform path.</li>
+      <li>"Not me, as long as I keep the relationship — and my data's still mine if I end it." &nbsp;→&nbsp; the managed-service path.</li>
+    </ul>
+
+    <p>There's no universally right answer. If you have a capable data team and the appetite to own your infrastructure, a platform may be exactly right, and you should buy one. If you have a single bounded project with a clear end, a consultant may be the cleanest path. But if your honest situation is "I want the result, not the responsibility, and I'm not going to hire a data team to get it" — you already know which one fits.</p>
+
+    <h2>What this looks like in your world</h2>
+
+    <p>The shape is universal. The specifics are yours. A resort's tangle of booking, ticketing, waiver, and email systems is a different picture than a real estate firm's property and ownership records, a school district's student and engagement data, or an insurer's policy and claims systems. The mess rhymes across all of them; the way out runs through <em>your</em> systems, <em>your</em> entities, <em>your</em> questions.</p>
+
+    <p>That's the real conversation — not "do you have a data problem," but "what does fixing yours take, what do you get back, and what does it cost you to choose it."</p>
+
+    <a href="/buyer-checklist.html" class="checklist-link">
+      <div class="cl-label">Before you spend a dollar</div>
+      <div class="cl-title">The buyer's checklist →</div>
+      <div class="cl-sub">Five questions to ask any vendor, the red flags, and when a managed service is the wrong answer.</div>
+    </a>
+
+    <div class="divider-rule"></div>
+
+    <div class="close-block">
+      <div class="section-label">What we do</div>
+      <p>This is exactly what we built <span class="brand">Handwave AI</span> to do.</p>
+      <p>We deliver a governed, trustworthy view of your business as a managed service — your data resolved, maintained, and kept current, without you hiring a data team and without a migration project to start. You point your systems at us as they are. You depend on us, your data stays yours, and we earn the relationship every month. That's the whole deal, and we'd rather say it plainly than dress it up.</p>
+      <p>If you read the Robert Hayes example and recognized your own business, that's the conversation worth having.</p>
+      <a href="/#early-access" class="btn-primary">
+        Let's talk
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M8 3l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+    </div>
+
+  </article>
+
+  <footer>
+    <a href="/" class="footer-logo"><img src="handwave_logo.png" alt="Handwave AI"></a>
+    <div class="footer-links">
+      <a href="https://linkedin.com/company/handwaveai" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="mailto:aaron.nelson@handwaveai.com">Contact</a>
+    </div>
+    <div class="footer-copy">© 2026 Handwave AI Inc.</div>
+  </footer>
+
+</body>
+</html>
