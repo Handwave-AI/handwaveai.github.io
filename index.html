@@ -6,23 +6,13 @@
 <title>Handwave AI — Every number arrives with its receipts</title>
 <meta name="description" content="Handwave AI builds and maintains governed reporting on one clean set of records drawn from every system you run; customer identity resolution, field-level lineage, and every number traceable to its source and the decision that produced it.">
 
-<!-- ============================================================
-     SHIP CHECKLIST (do not deploy until both are done)
-     1. GA4: replace G-XXXXXXXXXX below with the real measurement ID,
-        then mark these as Key Events in GA4 admin:
-        book_call_click, door_operators_click, door_partners_click,
-        guide_open, checklist_open, email_click
-     2. Zoom Scheduler: replace https://scheduler.zoom.us/REPLACE-ME
-        (three occurrences) with the real scheduler link
-     ============================================================ -->
-
 <!-- GA4 -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-V5PC7Z1J04"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
-  gtag('config', 'G-XXXXXXXXXX');
+  gtag('config', 'G-V5PC7Z1J04');
 </script>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -67,11 +57,12 @@
     background:rgba(250,248,243,.94); backdrop-filter:blur(6px);
     border-bottom:1px solid var(--stone);
   }
-  .bar{ display:flex; align-items:center; gap:1.5rem; padding:.85rem 0; }
-  .bar img{ height:34px; width:auto; display:block; }
+  .bar{ display:flex; align-items:center; gap:1.5rem; padding:.6rem 0; }
+  .bar img{ height:64px; width:auto; display:block; }
   nav.primary{ margin-left:auto; display:flex; gap:1.4rem; align-items:center; }
   nav.primary a{ text-decoration:none; color:var(--body); font-weight:600; font-size:.95rem; }
   nav.primary a:hover{ color:var(--olive); }
+  nav.primary a.btn, nav.primary a.btn:hover{ color:var(--ivory); }
   .btn{
     display:inline-block; text-decoration:none; font-weight:700; font-size:.98rem;
     background:var(--olive); color:var(--ivory); padding:.62rem 1.15rem;
@@ -191,7 +182,7 @@
   /* footer */
   footer.site{ border-top:1px solid var(--stone); padding:2.2rem 0 2.6rem; }
   footer.site .cols{ display:flex; align-items:center; gap:1.5rem; flex-wrap:wrap; }
-  footer.site img{ height:28px; width:auto; }
+  footer.site img{ height:52px; width:auto; }
   footer.site nav{ margin-left:auto; display:flex; gap:1.3rem; }
   footer.site a{ color:var(--body); text-decoration:none; font-size:.93rem; font-weight:600; }
   footer.site a:hover{ color:var(--olive); }
@@ -203,6 +194,7 @@
     .doors .grid, .res-grid{ grid-template-columns:1fr; }
     .row{ grid-template-columns:1fr; gap:.25rem; }
     nav.primary a.navlink{ display:none; }
+    .bar img{ height:48px; }
     .hero{ padding:3.2rem 0 2.6rem; }
   }
 </style>
@@ -217,7 +209,7 @@
       <a class="navlink" href="#partners">For partners</a>
       <a class="navlink" href="#proof">How you check it</a>
       <a class="navlink" href="#resources">Resources</a>
-      <a class="btn" href="https://scheduler.zoom.us/REPLACE-ME" data-ga="book_call_click" data-ga-loc="header">Book a call</a>
+      <a class="btn" href="https://scheduler.zoom.us/aaron-nelson-c1mmxt/30-mins-with-aaron-1" data-ga="book_call_click" data-ga-loc="header">Book a call</a>
     </nav>
   </div>
 </header>
@@ -234,7 +226,7 @@
       system you run. Every figure arrives with its provenance: which system it came from, what was
       applied to it, and who approved the logic. When two of your systems disagree, you see the gap
       instead of a quiet guess.</p>
-      <a class="btn" href="https://scheduler.zoom.us/REPLACE-ME" data-ga="book_call_click" data-ga-loc="hero">Book a call</a>
+      <a class="btn" href="https://scheduler.zoom.us/aaron-nelson-c1mmxt/30-mins-with-aaron-1" data-ga="book_call_click" data-ga-loc="hero">Book a call</a>
     </div>
   </section>
 
@@ -394,7 +386,7 @@
       <p class="intro">A first call is thirty minutes; you bring the questions your tools can't
       answer, and we'll tell you honestly whether this fits.</p>
       <div class="actions">
-        <a class="btn on-dark" href="https://scheduler.zoom.us/REPLACE-ME" data-ga="book_call_click" data-ga-loc="footer_cta">Book a call</a>
+        <a class="btn on-dark" href="https://scheduler.zoom.us/aaron-nelson-c1mmxt/30-mins-with-aaron-1" data-ga="book_call_click" data-ga-loc="footer_cta">Book a call</a>
         <span class="alt">or email
           <a href="mailto:aaron.nelson@handwaveai.com" data-ga="email_click">aaron.nelson@handwaveai.com</a></span>
       </div>
