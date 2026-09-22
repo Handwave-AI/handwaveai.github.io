@@ -1,1140 +1,432 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-V5PC7Z1J04"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-V5PC7Z1J04');
-  </script>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Handwave AI — You don't want a data warehouse. You want answers.</title>
-  <meta name="description" content="Enterprise-grade data infrastructure for small businesses. The analytics platform your board has been asking for — without the 18-month project.">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
-  <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-    :root {
-      --ink:       #1a2744;
-      --ink-mid:   #3d4e6b;
-      --ink-light: #7a8499;
-      --paper:     #ece8e0;
-      --paper-mid: #e4dfd6;
-      --accent:    #1a2744;
-      --accent-lt: #e8ecf4;
-      --warm:      #c8956b;
-      --warm-lt:   #f9f0e8;
-      --white:     #ffffff;
-      --rule:      rgba(15,17,23,0.12);
-    }
-
-    html { scroll-behavior: smooth; }
-
-    body {
-      font-family: 'DM Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-      background: var(--paper);
-      color: var(--ink);
-      font-size: 17px;
-      line-height: 1.65;
-      overflow-x: hidden;
-    }
-
-    /* ── NOISE OVERLAY ── */
-    body::before {
-      content: '';
-      position: fixed;
-      inset: 0;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
-      pointer-events: none;
-      z-index: 0;
-    }
-
-    /* ── NAV ── */
-    nav {
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      z-index: 100;
-      padding: 12px 48px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      background: rgba(236,232,224,0.92);
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid var(--rule);
-    }
-
-    .nav-logo {
-      font-family: 'DM Serif Display', Georgia, 'Times New Roman', serif;
-      font-size: 1.25rem;
-      color: var(--ink);
-      letter-spacing: -0.01em;
-      text-decoration: none;
-    }
-
-    .nav-logo span {
-      color: var(--accent);
-    }
-
-    .nav-cta {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      background: #1a2744;
-      color: var(--white);
-      font-family: 'DM Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-      font-size: 0.875rem;
-      font-weight: 500;
-      letter-spacing: 0.01em;
-      padding: 10px 20px;
-      border-radius: 4px;
-      text-decoration: none;
-      transition: background 0.2s, transform 0.15s;
-    }
-
-    .nav-cta:hover {
-      background: #1a2744;
-      transform: translateY(-1px);
-    }
-
-    /* ── HERO ── */
-    .hero {
-      min-height: 100vh;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      align-items: center;
-      padding: 160px 48px 80px;
-      gap: 80px;
-      position: relative;
-      z-index: 1;
-    }
-
-    .hero-left {
-      max-width: 560px;
-    }
-
-    .hero-eyebrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      font-size: 0.8rem;
-      font-weight: 500;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: var(--warm);
-      margin-bottom: 28px;
-    }
-
-    .hero-eyebrow::before {
-      content: '';
-      display: inline-block;
-      width: 24px;
-      height: 1px;
-      background: var(--warm);
-    }
-
-    .hero-headline {
-      font-family: 'DM Serif Display', Georgia, 'Times New Roman', serif;
-      font-size: clamp(2.8rem, 4.5vw, 4rem);
-      line-height: 1.1;
-      letter-spacing: -0.02em;
-      color: var(--ink);
-      margin-bottom: 28px;
-    }
-
-    .hero-headline em {
-      font-style: italic;
-      color: var(--accent);
-    }
-
-    .hero-sub {
-      font-size: 1.1rem;
-      font-weight: 300;
-      color: var(--ink-mid);
-      line-height: 1.7;
-      margin-bottom: 44px;
-      max-width: 480px;
-    }
-
-    .hero-actions {
-      display: flex;
-      align-items: center;
-      gap: 24px;
-      flex-wrap: wrap;
-    }
-
-    .btn-primary {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      background: #1a2744;
-      color: var(--white);
-      font-family: 'DM Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-      font-size: 0.95rem;
-      font-weight: 500;
-      padding: 14px 28px;
-      border-radius: 4px;
-      text-decoration: none;
-      border: none;
-      cursor: pointer;
-      transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
-      box-shadow: 0 4px 16px rgba(26,39,68,0.2);
-    }
-
-    .btn-primary:hover {
-      background: #1a2744;
-      transform: translateY(-2px);
-      box-shadow: 0 8px 24px rgba(26,39,68,0.28);
-    }
-
-    .btn-primary svg {
-      transition: transform 0.2s;
-    }
-
-    .btn-primary:hover svg {
-      transform: translateX(3px);
-    }
-
-    .hero-note {
-      font-size: 0.82rem;
-      color: var(--ink-light);
-      font-style: italic;
-    }
-
-    /* ── HERO RIGHT — STAT CARDS ── */
-    .hero-right {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 16px;
-      align-self: center;
-    }
-
-    .stat-card {
-      background: var(--white);
-      border: 1px solid var(--rule);
-      border-radius: 8px;
-      padding: 28px 24px;
-      position: relative;
-      overflow: hidden;
-      transition: transform 0.2s, box-shadow 0.2s;
-    }
-
-    .stat-card:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 12px 32px rgba(15,17,23,0.1);
-    }
-
-    .stat-card:nth-child(1) { grid-column: 1 / -1; background: #1a2744; color: var(--white); }
-    .stat-card:nth-child(1) .stat-label { color: rgba(255,255,255,0.7); }
-    .stat-card:nth-child(1) .stat-value { color: var(--white); }
-
-    .stat-card::after {
-      content: '';
-      position: absolute;
-      top: 0; right: 0;
-      width: 60px; height: 60px;
-      background: var(--rule);
-      border-radius: 0 8px 0 60px;
-    }
-
-    .stat-value {
-      font-family: 'DM Serif Display', Georgia, 'Times New Roman', serif;
-      font-size: 2.4rem;
-      line-height: 1;
-      color: var(--ink);
-      margin-bottom: 8px;
-    }
-
-    .stat-label {
-      font-size: 0.83rem;
-      color: var(--ink-light);
-      line-height: 1.4;
-    }
-
-    /* ── SCROLL INDICATOR ── */
-    .scroll-hint {
-      position: absolute;
-      bottom: 36px;
-      left: 50%;
-      transform: translateX(-50%);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 8px;
-      font-size: 0.75rem;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      color: var(--ink-light);
-      animation: bounce 2.5s ease-in-out infinite;
-    }
-
-    @keyframes bounce {
-      0%, 100% { transform: translateX(-50%) translateY(0); }
-      50% { transform: translateX(-50%) translateY(6px); }
-    }
-
-    /* ── DIVIDER ── */
-    .divider {
-      width: 100%;
-      height: 1px;
-      background: var(--rule);
-      margin: 0;
-    }
-
-    /* ── SECTION BASE ── */
-    section {
-      position: relative;
-      z-index: 1;
-    }
-
-    .container {
-      max-width: 1120px;
-      margin: 0 auto;
-      padding: 0 48px;
-    }
-
-    /* ── PROBLEM SECTION ── */
-    .problem {
-      padding: 100px 0;
-      background: #1a2744;
-      color: var(--white);
-    }
-
-    .problem-inner {
-      max-width: 1120px;
-      margin: 0 auto;
-      padding: 0 48px;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 80px;
-      align-items: center;
-    }
-
-    .section-label {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      font-size: 0.78rem;
-      font-weight: 500;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--warm);
-      margin-bottom: 24px;
-    }
-
-    .section-label::before {
-      content: '';
-      display: inline-block;
-      width: 20px;
-      height: 1px;
-      background: var(--warm);
-    }
-
-    .problem-headline {
-      font-family: 'DM Serif Display', Georgia, 'Times New Roman', serif;
-      font-size: clamp(2rem, 3vw, 2.8rem);
-      line-height: 1.15;
-      letter-spacing: -0.02em;
-      margin-bottom: 24px;
-    }
-
-    .problem-headline em {
-      font-style: italic;
-      color: rgba(255,255,255,0.5);
-    }
-
-    .problem-body {
-      font-size: 1rem;
-      font-weight: 300;
-      color: rgba(255,255,255,0.7);
-      line-height: 1.75;
-    }
-
-    .pain-list {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-    }
-
-    .pain-item {
-      display: flex;
-      align-items: flex-start;
-      gap: 16px;
-      padding: 20px 24px;
-      background: rgba(255,255,255,0.05);
-      border: 1px solid rgba(255,255,255,0.08);
-      border-radius: 6px;
-      font-size: 0.95rem;
-      color: rgba(255,255,255,0.85);
-      line-height: 1.5;
-      transition: background 0.2s;
-    }
-
-    .pain-item:hover {
-      background: rgba(255,255,255,0.08);
-    }
-
-    .pain-icon {
-      flex-shrink: 0;
-      width: 20px;
-      height: 20px;
-      margin-top: 2px;
-      color: var(--warm);
-    }
-
-    /* ── WHAT IT IS ── */
-    .what {
-      padding: 100px 0;
-      background: var(--paper);
-    }
-
-    .what-header {
-      text-align: center;
-      max-width: 680px;
-      margin: 0 auto 64px;
-    }
-
-    .section-headline {
-      font-family: 'DM Serif Display', Georgia, 'Times New Roman', serif;
-      font-size: clamp(2rem, 3vw, 2.8rem);
-      line-height: 1.15;
-      letter-spacing: -0.02em;
-      color: var(--ink);
-      margin-bottom: 20px;
-    }
-
-    .section-sub {
-      font-size: 1rem;
-      font-weight: 300;
-      color: var(--ink-mid);
-      line-height: 1.7;
-    }
-
-    .pillars {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 24px;
-    }
-
-    .pillar {
-      padding: 36px 32px;
-      background: var(--white);
-      border: 1px solid var(--rule);
-      border-radius: 8px;
-      position: relative;
-      overflow: hidden;
-      transition: transform 0.2s, box-shadow 0.2s;
-    }
-
-    .pillar:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 16px 40px rgba(15,17,23,0.1);
-    }
-
-    .pillar-number {
-      font-family: 'DM Serif Display', Georgia, 'Times New Roman', serif;
-      font-size: 3.5rem;
-      line-height: 1;
-      color: var(--accent-lt);
-      position: absolute;
-      top: 16px;
-      right: 24px;
-    }
-
-    .pillar-icon {
-      width: 44px;
-      height: 44px;
-      background: var(--accent-lt);
-      border-radius: 8px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: 20px;
-      color: var(--accent);
-    }
-
-    .pillar h3 {
-      font-family: 'DM Serif Display', Georgia, 'Times New Roman', serif;
-      font-size: 1.25rem;
-      color: var(--ink);
-      margin-bottom: 12px;
-      letter-spacing: -0.01em;
-    }
-
-    .pillar p {
-      font-size: 0.9rem;
-      color: var(--ink-mid);
-      line-height: 1.65;
-      font-weight: 300;
-    }
-
-    .pricing-anchor {
-      text-align: center;
-      margin-top: 48px;
-      font-size: 1rem;
-      font-weight: 500;
-      color: var(--ink);
-    }
-
-    .pricing-anchor span {
-      color: var(--ink-light);
-      font-weight: 300;
-    }
-
-    /* ── WHO IT IS FOR ── */
-    .who {
-      padding: 100px 0;
-      background: var(--paper-mid);
-    }
-
-    .who-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 80px;
-      align-items: center;
-    }
-
-    .who-copy .section-label { margin-bottom: 24px; }
-
-    .who-copy .section-headline {
-      margin-bottom: 20px;
-    }
-
-    .who-copy .section-sub {
-      margin-bottom: 36px;
-    }
-
-    .who-markers {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-    }
-
-    .marker {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      font-size: 0.95rem;
-      color: var(--ink-mid);
-    }
-
-    .marker-dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: #1a2744;
-      flex-shrink: 0;
-    }
-
-    .icp-card {
-      background: var(--white);
-      border: 1px solid var(--rule);
-      border-radius: 12px;
-      overflow: hidden;
-    }
-
-    .icp-header {
-      background: #1a2744;
-      padding: 24px 28px;
-      color: var(--white);
-    }
-
-    .icp-header h3 {
-      font-family: 'DM Serif Display', Georgia, 'Times New Roman', serif;
-      font-size: 1.1rem;
-      margin-bottom: 4px;
-    }
-
-    .icp-header p {
-      font-size: 0.82rem;
-      opacity: 0.75;
-      font-weight: 300;
-    }
-
-    .icp-body {
-      padding: 24px 28px;
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-    }
-
-    .icp-row {
-      display: flex;
-      align-items: flex-start;
-      gap: 14px;
-      padding-bottom: 16px;
-      border-bottom: 1px solid var(--rule);
-      font-size: 0.9rem;
-    }
-
-    .icp-row:last-child {
-      border-bottom: none;
-      padding-bottom: 0;
-    }
-
-    .icp-row-label {
-      font-weight: 500;
-      color: var(--ink);
-      min-width: 100px;
-      flex-shrink: 0;
-    }
-
-    .icp-row-val {
-      color: var(--ink-mid);
-      font-weight: 300;
-      line-height: 1.5;
-    }
-
-    /* ── QUOTE / PRINCIPLE ── */
-    .principle {
-      padding: 80px 0;
-      background: var(--warm-lt);
-      border-top: 1px solid rgba(200,119,58,0.15);
-      border-bottom: 1px solid rgba(200,119,58,0.15);
-    }
-
-    .principle-inner {
-      max-width: 820px;
-      margin: 0 auto;
-      padding: 0 48px;
-      text-align: center;
-    }
-
-    .principle-quote {
-      font-family: 'DM Serif Display', Georgia, 'Times New Roman', serif;
-      font-size: clamp(1.6rem, 2.8vw, 2.4rem);
-      line-height: 1.3;
-      color: var(--ink);
-      letter-spacing: -0.02em;
-      margin-bottom: 20px;
-    }
-
-    .principle-quote em {
-      font-style: italic;
-      color: var(--warm);
-    }
-
-    .principle-attr {
-      font-size: 0.82rem;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: var(--ink-light);
-    }
-
-    /* ── CTA SECTION ── */
-    .cta-section {
-      padding: 120px 0;
-      background: #1a2744;
-      color: var(--white);
-      text-align: center;
-    }
-
-    .cta-inner {
-      max-width: 600px;
-      margin: 0 auto;
-      padding: 0 48px;
-    }
-
-    .cta-section .section-label {
-      justify-content: center;
-      margin-bottom: 24px;
-    }
-
-    .cta-headline {
-      font-family: 'DM Serif Display', Georgia, 'Times New Roman', serif;
-      font-size: clamp(2rem, 3.5vw, 3rem);
-      line-height: 1.15;
-      letter-spacing: -0.02em;
-      margin-bottom: 20px;
-    }
-
-    .cta-sub {
-      font-size: 1rem;
-      font-weight: 300;
-      color: rgba(255,255,255,0.65);
-      line-height: 1.7;
-      margin-bottom: 44px;
-    }
-
-    /* ── EMAIL FORM ── */
-    .email-form {
-      display: flex;
-      gap: 0;
-      max-width: 440px;
-      margin: 0 auto 16px;
-      border-radius: 6px;
-      overflow: hidden;
-      box-shadow: 0 0 0 1px rgba(255,255,255,0.15);
-      transition: box-shadow 0.2s;
-    }
-
-    .email-form:focus-within {
-      box-shadow: 0 0 0 2px var(--warm);
-    }
-
-    .email-input {
-      flex: 1;
-      background: rgba(255,255,255,0.08);
-      border: none;
-      padding: 14px 20px;
-      font-family: 'DM Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-      font-size: 0.95rem;
-      color: var(--white);
-      outline: none;
-    }
-
-    .email-input::placeholder {
-      color: rgba(255,255,255,0.4);
-    }
-
-    .email-submit {
-      background: var(--warm);
-      color: var(--white);
-      border: none;
-      padding: 14px 24px;
-      font-family: 'DM Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-      font-size: 0.9rem;
-      font-weight: 500;
-      cursor: pointer;
-      transition: background 0.2s;
-      white-space: nowrap;
-    }
-
-    .email-submit:hover {
-      background: #b56830;
-    }
-
-    .form-note {
-      font-size: 0.8rem;
-      color: rgba(255,255,255,0.4);
-      font-style: italic;
-    }
-
-    /* ── FOOTER ── */
-    footer {
-      padding: 36px 48px;
-      background: #0f1a35;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      position: relative;
-      z-index: 1;
-    }
-
-    .footer-logo {
-      font-family: 'DM Serif Display', Georgia, 'Times New Roman', serif;
-      font-size: 1rem;
-      color: rgba(255,255,255,0.5);
-      text-decoration: none;
-    }
-
-    .footer-logo span { color: rgba(255,255,255,0.25); }
-
-    .footer-links {
-      display: flex;
-      gap: 28px;
-    }
-
-    .footer-links a {
-      font-size: 0.82rem;
-      color: rgba(255,255,255,0.35);
-      text-decoration: none;
-      transition: color 0.2s;
-    }
-
-    .footer-links a:hover {
-      color: rgba(255,255,255,0.7);
-    }
-
-    .footer-copy {
-      font-size: 0.78rem;
-      color: rgba(255,255,255,0.25);
-    }
-
-    /* ── ANIMATIONS ── */
-    .fade-up {
-      opacity: 0;
-      transform: translateY(24px);
-      transition: opacity 0.65s ease, transform 0.65s ease;
-    }
-
-    .fade-up.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    /* ── RESPONSIVE ── */
-    @media (max-width: 900px) {
-      nav { padding: 16px 24px; }
-      .hero { grid-template-columns: 1fr; padding: 100px 24px 60px; gap: 48px; }
-      .hero-left { max-width: 100%; }
-      .hero-right { grid-template-columns: 1fr 1fr; }
-      .problem-inner { grid-template-columns: 1fr; gap: 48px; padding: 0 24px; }
-      .container { padding: 0 24px; }
-      .pillars { grid-template-columns: 1fr; }
-      .who-grid { grid-template-columns: 1fr; gap: 48px; }
-      .principle-inner { padding: 0 24px; }
-      .cta-inner { padding: 0 24px; }
-      footer { flex-direction: column; gap: 16px; text-align: center; padding: 28px 24px; }
-      .footer-links { flex-wrap: wrap; justify-content: center; }
-    }
-  </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Handwave AI — Every number arrives with its receipts</title>
+<meta name="description" content="Handwave AI builds and maintains governed reporting on one clean set of records drawn from every system you run; customer identity resolution, field-level lineage, and every number traceable to its source and the decision that produced it.">
+
+<!-- ============================================================
+     SHIP CHECKLIST (do not deploy until both are done)
+     1. GA4: replace G-V5PC7Z1J04 below with the real measurement ID,
+        then mark these as Key Events in GA4 admin:
+        book_call_click, door_operators_click, door_partners_click,
+        guide_open, checklist_open, email_click
+     2. Zoom Scheduler: replace https://scheduler.zoom.us/REPLACE-ME
+        (three occurrences) with the real scheduler link
+     ============================================================ -->
+
+<!-- GA4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-V5PC7Z1J04"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-V5PC7Z1J04');
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<!-- Type is provisional: Source Serif 4 in the mock pending Tina's ratification of a brand typeface -->
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=Source+Sans+3:wght@400;600;700&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --olive:#4D5534;
+    --moss:#6B7259;
+    --orange:#DF780D;
+    --ivory:#F7EFDB;
+    --paper:#FAF8F3;
+    --stone:#D9D5CC;
+    --sage:#AAB393;
+    --charcoal:#2D2D2A;
+    --body:#3F4038;
+    --muted:#6E6F64;
+    --serif:'Source Serif 4','Charter',Georgia,serif;
+    --sans:'Source Sans 3','Segoe UI','Liberation Sans',sans-serif;
+    --mono:'IBM Plex Mono','Consolas',ui-monospace,monospace;
+    --measure:38rem;
+    box-sizing:border-box;
+    padding-top:env(safe-area-inset-top,0px);
+    padding-bottom:env(safe-area-inset-bottom,0px);
+  }
+  html{ scroll-behavior:smooth; scroll-padding-top:calc(4.5rem + env(safe-area-inset-top,0px)); }
+  *,*::before,*::after{ box-sizing:inherit; }
+  html,body{ margin:0; padding:0; }
+  body{ background:var(--paper); color:var(--body); font-family:var(--sans);
+        font-size:1.0625rem; line-height:1.6; }
+  img{ max-width:100%; height:auto; }
+  a{ color:var(--olive); }
+  a:focus-visible, button:focus-visible{ outline:3px solid var(--orange); outline-offset:2px; }
+
+  .wrap{ max-width:68rem; margin:0 auto; padding:0 1.5rem; }
+
+  /* ---------- header ---------- */
+  header.site{
+    position:sticky; top:env(safe-area-inset-top,0px); z-index:10;
+    background:rgba(250,248,243,.94); backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--stone);
+  }
+  .bar{ display:flex; align-items:center; gap:1.5rem; padding:.85rem 0; }
+  .bar img{ height:34px; width:auto; display:block; }
+  nav.primary{ margin-left:auto; display:flex; gap:1.4rem; align-items:center; }
+  nav.primary a{ text-decoration:none; color:var(--body); font-weight:600; font-size:.95rem; }
+  nav.primary a:hover{ color:var(--olive); }
+  .btn{
+    display:inline-block; text-decoration:none; font-weight:700; font-size:.98rem;
+    background:var(--olive); color:var(--ivory); padding:.62rem 1.15rem;
+    border:1px solid var(--olive); border-radius:2px;
+  }
+  .btn:hover{ background:#3e452a; }
+  .btn.ghost{ background:transparent; color:var(--olive); }
+  .btn.ghost:hover{ background:var(--ivory); }
+  .btn.on-dark{ background:var(--ivory); color:var(--olive); border-color:var(--ivory); }
+  .btn.on-dark:hover{ background:var(--paper); }
+
+  /* ---------- kicker ---------- */
+  .kicker{
+    font-family:var(--mono); font-size:.72rem; letter-spacing:.16em;
+    text-transform:uppercase; color:var(--moss); margin:0 0 .9rem;
+  }
+  .dark .kicker{ color:var(--sage); }
+
+  /* ---------- hero ---------- */
+  .hero{ padding:5rem 0 3.5rem; }
+  .hero h1{
+    font-family:var(--serif); font-weight:600; letter-spacing:-.008em;
+    font-size:clamp(2.1rem, 4.6vw, 3.3rem); line-height:1.14;
+    color:var(--charcoal); margin:0 0 1.1rem; max-width:22ch;
+  }
+  .hero .standfirst{
+    font-size:1.17rem; line-height:1.6; color:var(--muted);
+    max-width:var(--measure); margin:0 0 1.8rem;
+  }
+  .hero .rule-accent{ width:3.5rem; height:3px; background:var(--orange);
+    border:0; margin:0 0 1.6rem; }
+  @media (prefers-reduced-motion: no-preference){
+    .hero > *{ opacity:0; transform:translateY(10px);
+      animation:rise .55s ease-out forwards; }
+    .hero > *:nth-child(2){ animation-delay:.08s; }
+    .hero > *:nth-child(3){ animation-delay:.16s; }
+    .hero > *:nth-child(4){ animation-delay:.24s; }
+    @keyframes rise{ to{ opacity:1; transform:none; } }
+  }
+
+  /* ---------- two doors ---------- */
+  .doors{ padding:0 0 4rem; }
+  .doors .grid{ display:grid; grid-template-columns:1fr 1fr; gap:1.25rem; }
+  .door{
+    display:block; text-decoration:none; padding:2rem 2rem 1.8rem;
+    border-radius:2px; position:relative;
+  }
+  .door h2{
+    font-family:var(--serif); font-weight:600; font-size:1.65rem;
+    line-height:1.2; margin:.4rem 0 .8rem;
+  }
+  .door p{ margin:0 0 1.2rem; font-size:1rem; line-height:1.55; }
+  .door .go{ font-weight:700; font-size:.95rem;
+    border-bottom:2px solid var(--orange); padding-bottom:2px; }
+  .door.light{ background:var(--ivory); border:1px solid var(--stone); color:var(--body); }
+  .door.light h2{ color:var(--charcoal); }
+  .door.light .go{ color:var(--olive); }
+  .door.light:hover{ background:#F2E8CE; }
+  .door.dark{ background:var(--olive); color:var(--ivory); }
+  .door.dark h2{ color:var(--ivory); }
+  .door.dark p{ color:#E7E3D2; }
+  .door.dark .go{ color:var(--ivory); }
+  .door.dark:hover{ background:#434a2d; }
+  .door .kicker{ margin-bottom:.2rem; }
+
+  /* ---------- sections ---------- */
+  section.block{ padding:3.8rem 0; }
+  section.block.tint{ background:var(--ivory);
+    border-top:1px solid var(--stone); border-bottom:1px solid var(--stone); }
+  section.block.dark{ background:var(--olive); color:var(--ivory); }
+  section.block h2{
+    font-family:var(--serif); font-weight:600; font-size:clamp(1.6rem,3vw,2.15rem);
+    line-height:1.2; color:var(--charcoal); margin:0 0 1rem; max-width:26ch;
+  }
+  section.block.dark h2{ color:var(--ivory); }
+  section.block .intro{ max-width:var(--measure); color:var(--muted); margin:0 0 2rem; }
+  section.block.dark .intro{ color:#E7E3D2; }
+
+  /* definition rows, carried from the one-pager */
+  .rows{ max-width:52rem; }
+  .row{ display:grid; grid-template-columns:12.5rem 1fr; gap:1.25rem;
+    padding:1rem 0; border-bottom:1px dotted var(--stone); }
+  .row:last-child{ border-bottom:none; }
+  .row .k{ font-weight:700; color:var(--olive); line-height:1.35; }
+  .row .v{ color:var(--body); line-height:1.55; }
+  .dark .row{ border-bottom-color:#5d6544; }
+  .dark .row .k{ color:var(--sage); }
+  .dark .row .v{ color:#EDEADA; }
+
+  .aside{ font-size:.98rem; color:var(--muted); max-width:var(--measure); margin:1.8rem 0 0; }
+  .dark .aside{ color:#D6D2C0; }
+
+  /* pull quote */
+  .pull{
+    font-family:var(--serif); font-size:clamp(1.25rem,2.4vw,1.6rem); line-height:1.4;
+    color:var(--charcoal); max-width:44rem; margin:0;
+    padding-left:1.4rem; border-left:3px solid var(--orange);
+  }
+
+  /* resources */
+  .res-grid{ display:grid; grid-template-columns:1fr 1fr; gap:1.25rem; max-width:56rem; }
+  .res{ display:block; text-decoration:none; background:var(--paper);
+    border:1px solid var(--stone); padding:1.6rem 1.6rem 1.4rem; border-radius:2px; }
+  .res:hover{ border-color:var(--sage); background:#fff; }
+  .res h3{ font-family:var(--serif); font-weight:600; font-size:1.25rem;
+    color:var(--charcoal); margin:0 0 .5rem; }
+  .res p{ margin:0 0 .9rem; color:var(--muted); font-size:.98rem; line-height:1.55; }
+  .res .go{ color:var(--olive); font-weight:700; font-size:.95rem;
+    border-bottom:2px solid var(--orange); padding-bottom:2px; }
+
+  /* final cta */
+  .cta-final{ text-align:left; }
+  .cta-final .actions{ display:flex; gap:1rem; flex-wrap:wrap; margin-top:1.6rem; }
+  .cta-final .alt{ color:#D6D2C0; font-size:.95rem; align-self:center; }
+  .cta-final .alt a{ color:var(--ivory); }
+
+  /* footer */
+  footer.site{ border-top:1px solid var(--stone); padding:2.2rem 0 2.6rem; }
+  footer.site .cols{ display:flex; align-items:center; gap:1.5rem; flex-wrap:wrap; }
+  footer.site img{ height:28px; width:auto; }
+  footer.site nav{ margin-left:auto; display:flex; gap:1.3rem; }
+  footer.site a{ color:var(--body); text-decoration:none; font-size:.93rem; font-weight:600; }
+  footer.site a:hover{ color:var(--olive); }
+  .legal{ font-family:var(--mono); font-size:.72rem; letter-spacing:.05em;
+    color:var(--muted); margin-top:1.4rem; }
+
+  /* ---------- responsive ---------- */
+  @media (max-width:860px){
+    .doors .grid, .res-grid{ grid-template-columns:1fr; }
+    .row{ grid-template-columns:1fr; gap:.25rem; }
+    nav.primary a.navlink{ display:none; }
+    .hero{ padding:3.2rem 0 2.6rem; }
+  }
+</style>
 </head>
 <body>
 
-  <!-- NAV -->
-  <nav>
-    <a href="/" class="nav-logo"><img src="handwave_logo.png" alt="Handwave AI" style="height: 120px; width: auto; display: block;"></a>
-    <a href="#early-access" class="nav-cta">
-      Become a development partner
-      <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-        <path d="M2 7h10M7 2l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-      </svg>
-    </a>
-  </nav>
+<header class="site">
+  <div class="wrap bar">
+    <a href="#top" aria-label="Handwave AI home"><img src="handwave_logo.png" alt="Handwave AI"></a>
+    <nav class="primary" aria-label="Primary">
+      <a class="navlink" href="#operators">For operators</a>
+      <a class="navlink" href="#partners">For partners</a>
+      <a class="navlink" href="#proof">How you check it</a>
+      <a class="navlink" href="#resources">Resources</a>
+      <a class="btn" href="https://scheduler.zoom.us/REPLACE-ME" data-ga="book_call_click" data-ga-loc="header">Book a call</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
 
   <!-- HERO -->
   <section class="hero">
-    <div class="hero-left fade-up">
-      <div class="hero-eyebrow">Managed Analytics as a Service</div>
-      <h1 class="hero-headline">
-        Your board is asking questions<br>
-        your tools <em>can't answer.</em>
-      </h1>
-      <p class="hero-sub">
-        Handwave AI delivers enterprise-grade data infrastructure to small and mid-size hospitality and resort operators — without the 18-month project, the internal IT overhead, or the seven-figure consulting bill.
-      </p>
-      <p style="font-size: 0.9rem; font-weight: 400; color: var(--warm); margin-bottom: 8px; letter-spacing: 0.01em;">We are onboarding a small number of development partners.</p>
-      <div class="hero-actions">
-        <a href="#early-access" class="btn-primary">
-          Become a development partner
-          <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-            <path d="M3 8h10M8 3l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
+    <div class="wrap">
+      <p class="kicker">Managed analytics · Governed data</p>
+      <h1>The next time someone questions a number, the answer is already in the report.</h1>
+      <hr class="rule-accent">
+      <p class="standfirst">Handwave AI builds your reporting on one clean set of records drawn from every
+      system you run. Every figure arrives with its provenance: which system it came from, what was
+      applied to it, and who approved the logic. When two of your systems disagree, you see the gap
+      instead of a quiet guess.</p>
+      <a class="btn" href="https://scheduler.zoom.us/REPLACE-ME" data-ga="book_call_click" data-ga-loc="hero">Book a call</a>
+    </div>
+  </section>
+
+  <!-- THE FORK — two doors, early -->
+  <section class="doors" aria-label="Choose your path">
+    <div class="wrap">
+      <div class="grid">
+        <a class="door light" href="#operators" data-ga="door_operators_click">
+          <p class="kicker">Operators</p>
+          <h2>You run the business.</h2>
+          <p>The reports you actually need, built with you and kept current. You don't assemble
+          anything, you don't learn a new tool, and you don't hire anybody onto your payroll.</p>
+          <span class="go">See how it works for operators</span>
         </a>
-        <span class="hero-note">Travel & leisure vertical. Limited onboarding slots.</span>
-      </div>
-    </div>
-
-    <div class="hero-right fade-up" style="transition-delay: 0.15s">
-      <div class="stat-card">
-        <div class="stat-value">$500k–$2M</div>
-        <div class="stat-label">Industry average cost of a traditional EDW creation project — before anyone runs it</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-value">18 mo.</div>
-        <div class="stat-label">Industry average time to first usable output from a traditional data warehouse build</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-value">Days</div>
-        <div class="stat-label">Time to first governed analytics with Handwave AI — not months, not a project</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-value">0</div>
-        <div class="stat-label">Internal IT resources required to run the service — your data comes to us, not the other way around</div>
-      </div>
-    </div>
-
-    <div class="scroll-hint">
-      <svg width="16" height="20" viewBox="0 0 16 20" fill="none">
-        <path d="M8 1v18M1 13l7 7 7-7" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
-      </svg>
-    </div>
-  </section>
-
-  <div class="divider"></div>
-
-  <!-- PROBLEM -->
-  <section class="problem">
-    <div class="problem-inner">
-      <div class="fade-up">
-        <div class="section-label">The problem</div>
-        <h2 class="problem-headline">
-          You know you need better data.<br>
-          <em>The project has always been impossible.</em>
-        </h2>
-        <p class="problem-body">
-          The marketing director who gets asked "where are our guests actually coming from?" The finance director who can't tie campaign spend to booking revenue because the data lives in four different systems. The GM who needs to brief the board on next season's outlook — and is flying blind.
-          <br><br>
-          It is not a budget problem. It is an organizational impossibility. You cannot absorb a 12-month EDW project without a dedicated data team, internal IT ownership, and a steering committee. So the problem stays unsolved.
-        </p>
-      </div>
-
-      <ul class="pain-list fade-up" style="transition-delay: 0.15s">
-        <li class="pain-item">
-          <svg class="pain-icon" viewBox="0 0 20 20" fill="none">
-            <circle cx="10" cy="10" r="8" stroke="currentColor" stroke-width="1.5"/>
-            <path d="M10 6v4l3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-          </svg>
-          Guest origin, campaign attribution, and revenue forecasting are all questions that should have clean answers — and don't.
-        </li>
-        <li class="pain-item">
-          <svg class="pain-icon" viewBox="0 0 20 20" fill="none">
-            <path d="M3 6h14M3 10h10M3 14h6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-          </svg>
-          Your data lives in ActiveCampaign, your PMS, Destimetrics, and a spreadsheet someone built three years ago. None of them talk to each other.
-        </li>
-        <li class="pain-item">
-          <svg class="pain-icon" viewBox="0 0 20 20" fill="none">
-            <path d="M10 3L3 17h14L10 3z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
-            <path d="M10 10v3M10 14.5v.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-          </svg>
-          You've been told an enterprise data warehouse isn't feasible at your size. That's been true — until now.
-        </li>
-        <li class="pain-item">
-          <svg class="pain-icon" viewBox="0 0 20 20" fill="none">
-            <rect x="3" y="5" width="14" height="10" rx="2" stroke="currentColor" stroke-width="1.5"/>
-            <path d="M7 5V4a1 1 0 011-1h4a1 1 0 011 1v1" stroke="currentColor" stroke-width="1.5"/>
-          </svg>
-          Every quarter someone spends two weeks building a presentation instead of running the business — because the data is not ready.
-        </li>
-      </ul>
-    </div>
-  </section>
-
-  <!-- WHAT IT IS -->
-  <section class="what">
-    <div class="container">
-      <div class="what-header fade-up">
-        <div class="section-label" style="justify-content: center">What Handwave AI is</div>
-        <h2 class="section-headline">Enterprise architecture. Managed service. Monthly price.</h2>
-        <p class="section-sub">The kind of data infrastructure that runs billion-dollar resort operators — now accessible to the organizations that need it most, at a price point that actually fits.</p>
-      </div>
-
-      <div class="pillars">
-        <div class="pillar fade-up">
-          <div class="pillar-number">01</div>
-          <div class="pillar-icon">
-            <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
-              <path d="M4 6h14M4 11h10M4 16h6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-            </svg>
-          </div>
-          <h3>All your sources. One governed layer.</h3>
-          <p>We connect every data source you have — CRM, reservations, marketing, market benchmarks — and govern them in a single unified layer. No more spreadsheet stitching.</p>
-        </div>
-
-        <div class="pillar fade-up" style="transition-delay: 0.1s">
-          <div class="pillar-number">02</div>
-          <div class="pillar-icon">
-            <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
-              <circle cx="11" cy="11" r="8" stroke="currentColor" stroke-width="1.5"/>
-              <path d="M11 7v4l3 2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-            </svg>
-          </div>
-          <h3>Your KPIs. Calculated automatically.</h3>
-          <p>A curated library of travel and leisure metrics — updated weekly or monthly, calculated from your actual data, and enriched with public demographic and market intelligence.</p>
-        </div>
-
-        <div class="pillar fade-up" style="transition-delay: 0.2s">
-          <div class="pillar-number">03</div>
-          <div class="pillar-icon">
-            <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
-              <path d="M6 16l4-8 4 8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-              <path d="M7.5 13h5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-            </svg>
-          </div>
-          <h3>Managed. Nothing for you to run.</h3>
-          <p>No internal IT ownership. No data engineer to hire. No pipeline to maintain. Your data comes to us via standard connectors — no firewall changes, no network configuration. We own the infrastructure, the pipeline, and the governance. You own the insights.</p>
-        </div>
-
-        <div class="pillar fade-up" style="transition-delay: 0.3s">
-          <div class="pillar-number">04</div>
-          <div class="pillar-icon">
-            <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
-              <circle cx="8" cy="8" r="4" stroke="currentColor" stroke-width="1.5"/>
-              <circle cx="14" cy="14" r="4" stroke="currentColor" stroke-width="1.5"/>
-              <path d="M11 8h3M8 11v3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-            </svg>
-          </div>
-          <h3>One guest. Every source. One record.</h3>
-          <p>A unified golden guest record that resolves identity across every system you run — so you know exactly who your guest is, regardless of where the data came from.</p>
-        </div>
-      </div>
-
-      <div class="pricing-anchor fade-up">
-        Starting at $3,000/month. <span>No setup fee. No long-term contract required.</span>
+        <a class="door dark" href="#partners" data-ga="door_partners_click">
+          <p class="kicker">Analysts · Agencies · Consultancies</p>
+          <h2>You deliver the analysis.</h2>
+          <p>A governed data layer stood up for each client you serve. You run the analysis on top,
+          in your own tools, and the hours that went to assembly go to the work your clients pay for.</p>
+          <span class="go">See how it works for partners</span>
+        </a>
       </div>
     </div>
   </section>
 
-  <!-- WHO IT IS FOR -->
-  <section class="who">
-    <div class="container">
-      <div class="who-grid">
-        <div class="who-copy fade-up">
-          <div class="section-label">Who it's for</div>
-          <h2 class="section-headline">Built for operators without a data team.</h2>
-          <p class="section-sub">
-            If your organization has been told an enterprise data solution isn't feasible at your size, Handwave AI was built specifically for you.
-          </p>
-          <div class="who-markers">
-            <div class="marker"><div class="marker-dot"></div>Independent and regional resort operators</div>
-            <div class="marker"><div class="marker-dot"></div>Destination marketing organizations (DMOs)</div>
-            <div class="marker"><div class="marker-dot"></div>Hospitality groups with 50–500 employees</div>
-            <div class="marker"><div class="marker-dot"></div>Directors getting asked questions their tools can't answer</div>
-            <div class="marker"><div class="marker-dot"></div>Organizations using 2–4 disconnected systems with no unified view</div>
-          </div>
-        </div>
+  <!-- OPERATORS -->
+  <section class="block tint" id="operators">
+    <div class="wrap">
+      <p class="kicker">For operators</p>
+      <h2>Managed analytics, included.</h2>
+      <p class="intro">Most operations run on five or ten systems that were never built to talk to
+      each other. Getting a straight answer means somebody exports it all and reconciles it by hand,
+      then does it again next month. We take that over.</p>
+      <div class="rows">
+        <div class="row"><div class="k">One customer, one record</div>
+          <div class="v">Your reservation system, your CRM, and your POS each spell the same person
+          differently. We resolve them into a single governed record per person; every merge is
+          reviewed by a human and reversible. The industry calls this master data management; you
+          get it without running an MDM program.</div></div>
+        <div class="row"><div class="k">We define it with you</div>
+          <div class="v">A working session to pin down the questions that matter and how each number
+          is calculated. Your definitions, written down and enforced.</div></div>
+        <div class="row"><div class="k">An agreed set of reporting</div>
+          <div class="v">A dashboard and a defined set of recurring reports covering the areas you
+          pick. Scope is written into the agreement, so there are no surprise invoices.</div></div>
+        <div class="row"><div class="k">It stays current</div>
+          <div class="v">Refreshed on your schedule. When a definition needs to change because the
+          business changed, we change it; that is part of keeping it current, not a new project.</div></div>
+        <div class="row"><div class="k">Beyond that scope</div>
+          <div class="v">Deeper analysis is quoted separately, or connect your own tools directly;
+          Power BI, Tableau, Excel, your accountant.</div></div>
+      </div>
+      <p class="aside">Who this is for: operators big enough to have real questions and too small to
+      justify a data team. Multi-location restaurants and hospitality groups, resorts and destination
+      organizations.</p>
+    </div>
+  </section>
 
-        <div class="icp-card fade-up" style="transition-delay: 0.15s">
-          <div class="icp-header">
-            <h3>Built for organizations like this</h3>
-            <p>Resort, hospitality, and destination operations</p>
-          </div>
-          <div class="icp-body">
-            <div class="icp-row">
-              <span class="icp-row-label">Organization</span>
-              <span class="icp-row-val">Independent resort, DMO, or regional hospitality operator</span>
-            </div>
-            <div class="icp-row">
-              <span class="icp-row-label">Size</span>
-              <span class="icp-row-val">50–500 employees; no dedicated data team</span>
-            </div>
-            <div class="icp-row">
-              <span class="icp-row-label">Situation</span>
-              <span class="icp-row-val">2–4 connected systems; board or exec asking data questions the team can't answer cleanly</span>
-            </div>
-            <div class="icp-row">
-              <span class="icp-row-label">History</span>
-              <span class="icp-row-val">Has been told an EDW isn't feasible at this size</span>
-            </div>
-            <div class="icp-row">
-              <span class="icp-row-label">What changes</span>
-              <span class="icp-row-val">Governed analytics running in days, a golden guest record, and KPIs that actually answer the board's questions — without a data team</span>
-            </div>
-          </div>
-        </div>
+  <!-- PARTNERS -->
+  <section class="block dark" id="partners">
+    <div class="wrap">
+      <p class="kicker">For analysts, agencies, and consultancies</p>
+      <h2>The foundation is ours to run. The analysis, and the client, stay yours.</h2>
+      <p class="intro">You already do the thinking your clients pay for. What eats your week is
+      getting their data into a state where thinking is possible. Handwave AI stands up a governed
+      layer per client, then steps back.</p>
+      <div class="rows">
+        <div class="row"><div class="k">A foundation per client</div>
+          <div class="v">Each client you bring gets its own governed layer; their systems, their
+          definitions, written down and enforced.</div></div>
+        <div class="row"><div class="k">You run it</div>
+          <div class="v">Connect your own tools; Power BI, Tableau, SQL. The analysis, the
+          deliverables, and the relationship carry your name, not ours.</div></div>
+        <div class="row"><div class="k">Setup, then handoff</div>
+          <div class="v">We help stand it up and we maintain the layer underneath. The work on top
+          is yours from day one.</div></div>
+        <div class="row"><div class="k">In your terms</div>
+          <div class="v">Master data management for person entities: match and merge with
+          human-reviewed survivorship, field-level lineage, reversible decisions, and a
+          metadata-driven governed model underneath. Your client gets MDM-grade customer records
+          without standing up an MDM program, and you get to say so in the deliverable.</div></div>
+        <div class="row"><div class="k">Capacity for more</div>
+          <div class="v">The hours you spend on exports and reconciliation become hours on analysis,
+          and room for the next client you take on.</div></div>
       </div>
     </div>
   </section>
 
-  <!-- PRINCIPLE -->
-  <section class="principle">
-    <div class="principle-inner fade-up">
-      <p class="principle-quote">
-        "Complexity is conserved — it cannot be removed, only moved. <em>Handwave AI moves it where it belongs — into governed infrastructure you do not have to build or maintain.</em>"
+  <!-- PROOF — shared spine -->
+  <section class="block" id="proof">
+    <div class="wrap">
+      <p class="kicker">How you can check the numbers</p>
+      <h2>Whichever door you came through, the numbers work the same way.</h2>
+      <div class="rows">
+        <div class="row"><div class="k">A person reviews it</div>
+          <div class="v">Every decision about how your systems fit together is approved by a human
+          before it reaches you, and you see the reasoning.</div></div>
+        <div class="row"><div class="k">Any number is traceable</div>
+          <div class="v">Back to the system it came from, and back to the decision that produced it.</div></div>
+        <div class="row"><div class="k">Systems that disagree</div>
+          <div class="v">When two of your systems report the same thing differently, we show you the
+          gap rather than quietly picking one.</div></div>
+        <div class="row"><div class="k">Wrong calls reverse</div>
+          <div class="v">Every decision is stored. If one turns out to be wrong, it rolls back
+          without rebuilding anything.</div></div>
+      </div>
+      <p class="aside" style="margin-top:2.4rem">
+        <span class="pull" style="display:block">We will never tell you a number is right; a number is
+        only as accurate as the system it came from, and those systems are yours. What we can show
+        you, on demand, is exactly where it came from and exactly what was applied to it.</span>
       </p>
-      <div class="principle-attr">Aaron Nelson, CEO — Handwave AI</div>
     </div>
   </section>
 
-  <!-- GO DEEPER -->
-  <section class="what" style="background: var(--paper);">
-    <div class="container">
-      <div class="what-header fade-up">
-        <div class="section-label" style="justify-content: center">Not ready to talk yet?</div>
-        <h2 class="section-headline">Understand it first.</h2>
-        <p class="section-sub">No pitch, no form. Two honest reads for anyone weighing how to fix their data — including how to tell a real fix from an expensive one.</p>
-      </div>
+  <!-- PRICING SHAPE -->
+  <section class="block tint" id="pricing">
+    <div class="wrap">
+      <p class="kicker">What it costs</p>
+      <h2>A flat monthly fee. No setup fee.</h2>
+      <p class="intro">Starting at $3,000 per month, sized to the number of systems and the
+      reporting you need. No long-term contract required. Connecting your systems and agreeing your
+      definitions is part of the service, not a separate project, and the monthly number doesn't
+      move unless your business does.</p>
+    </div>
+  </section>
 
-      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px; max-width: 880px; margin: 48px auto 0;">
-        <a href="/data-guide.html" class="pillar fade-up" style="text-decoration: none; display: block;">
-          <div class="pillar-icon">
-            <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
-              <circle cx="7" cy="7" r="3" stroke="currentColor" stroke-width="1.5"/>
-              <circle cx="15" cy="15" r="3" stroke="currentColor" stroke-width="1.5"/>
-              <path d="M10 7h2a2 2 0 012 2v3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-            </svg>
-          </div>
+  <!-- RESOURCES -->
+  <section class="block" id="resources">
+    <div class="wrap">
+      <p class="kicker">Not ready to talk yet?</p>
+      <h2>Understand it first.</h2>
+      <p class="intro">No pitch, no form. Two honest reads for anyone weighing how to fix their
+      data, including how to tell a real fix from an expensive one.</p>
+      <div class="res-grid">
+        <a class="res" href="data-guide.html" data-ga="guide_open">
           <h3>You don't have a data problem. You have a data-is-everywhere problem.</h3>
-          <p>One customer, five records, four systems that don't talk. What the mess really is, what "fixed" looks like, and how to choose between a consultant, a platform, and a managed service.</p>
-          <span style="display:inline-block; margin-top:16px; color: var(--warm); font-weight:500; font-size:0.9rem;">Read the guide &rarr;</span>
+          <p>One customer, five records, four systems that don't talk. What the mess really is, what
+          "fixed" looks like, and how to choose between a consultant, a platform, and a managed
+          service.</p>
+          <span class="go">Read the guide</span>
         </a>
-
-        <a href="/buyer-checklist.html" class="pillar fade-up" style="text-decoration: none; display: block; transition-delay: 0.1s;">
-          <div class="pillar-icon">
-            <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
-              <path d="M5 11l3 3 6-7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </div>
+        <a class="res" href="buyer-checklist.html" data-ga="checklist_open">
           <h3>Before you spend a dollar: a buyer's checklist.</h3>
-          <p>Five questions to ask any vendor, the red flags that mean you'll be left holding the bag, and the honest cases when a managed service is the wrong answer.</p>
-          <span style="display:inline-block; margin-top:16px; color: var(--warm); font-weight:500; font-size:0.9rem;">Open the checklist &rarr;</span>
+          <p>Five questions to ask any vendor, the red flags that mean you'll be left holding the
+          bag, and the honest cases when a managed service is the wrong answer.</p>
+          <span class="go">Open the checklist</span>
         </a>
       </div>
     </div>
   </section>
 
-  <!-- CTA -->
-  <section class="cta-section" id="early-access">
-    <div class="cta-inner fade-up">
-      <div class="section-label" style="color: var(--warm)">Get started</div>
-      <h2 class="cta-headline">You don't want a data warehouse. You want answers.</h2>
-      <p class="cta-sub">
-        If your organization has the problem we described, we want to talk.
-      </p>
-      <form class="email-form" id="contact-form">
-        <input type="email" name="email" class="email-input" placeholder="your@email.com" required>
-        <button type="submit" class="email-submit">Become a development partner</button>
-      </form>
-      <p class="form-note" id="form-note">If your situation fits, we want to talk.</p>
+  <!-- FINAL CTA -->
+  <section class="block dark cta-final" id="talk">
+    <div class="wrap">
+      <p class="kicker">Get started</p>
+      <h2>If this is your situation, we want to talk.</h2>
+      <p class="intro">A first call is thirty minutes; you bring the questions your tools can't
+      answer, and we'll tell you honestly whether this fits.</p>
+      <div class="actions">
+        <a class="btn on-dark" href="https://scheduler.zoom.us/REPLACE-ME" data-ga="book_call_click" data-ga-loc="footer_cta">Book a call</a>
+        <span class="alt">or email
+          <a href="mailto:aaron.nelson@handwaveai.com" data-ga="email_click">aaron.nelson@handwaveai.com</a></span>
+      </div>
     </div>
   </section>
 
-  <!-- FOOTER -->
-  <footer>
-    <a href="/" class="footer-logo"><img src="handwave_logo.png" alt="Handwave AI" style="height: 120px; width: auto; display: block;"></a>
-    <div class="footer-links">
-      <a href="https://linkedin.com/company/handwaveai" target="_blank" rel="noopener">LinkedIn</a>
-      <a href="mailto:aaron.nelson@handwaveai.com">Contact</a>
+</main>
+
+<footer class="site">
+  <div class="wrap">
+    <div class="cols">
+      <img src="handwave_logo.png" alt="Handwave AI">
+      <nav aria-label="Footer">
+        <a href="https://linkedin.com/company/handwaveai">LinkedIn</a>
+        <a href="mailto:aaron.nelson@handwaveai.com" data-ga="email_click">Contact</a>
+      </nav>
     </div>
-    <div class="footer-copy">© 2026 Handwave AI Inc.</div>
-  </footer>
+    <p class="legal">© 2026 Handwave AI, Inc.</p>
+  </div>
+</footer>
 
-  <script>
-    // Intersection observer for fade-up animations
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(el => {
-        if (el.isIntersecting) {
-          el.target.classList.add('visible');
-          observer.unobserve(el.target);
-        }
-      });
-    }, { threshold: 0.12 });
-
-    document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
-
-    // Trigger hero elements immediately
-    setTimeout(() => {
-      document.querySelectorAll('.hero .fade-up').forEach(el => el.classList.add('visible'));
-    }, 100);
-
-    // Formspree fetch submission — no redirect
-    document.getElementById("contact-form").addEventListener("submit", async function(e) {
-      e.preventDefault();
-      const email = this.querySelector("input[type=email]").value;
-      const btn   = this.querySelector("button");
-      const note  = document.getElementById("form-note");
-      btn.textContent = "Sending...";
-      btn.disabled = true;
-      try {
-        const res = await fetch("https://formspree.io/f/mdajpzyy", {
-          method: "POST",
-          headers: { "Content-Type": "application/json", "Accept": "application/json" },
-          body: JSON.stringify({ email })
-        });
-        if (res.ok) {
-          this.innerHTML = "<p style=\"color:rgba(255,255,255,0.85);font-size:1rem;padding:14px 0\">Got it — we will be in touch shortly.</p>";
-          note.style.display = "none";
-        } else {
-          btn.textContent = "Become a development partner";
-          btn.disabled = false;
-          note.textContent = "Something went wrong — email us directly at aaron.nelson@handwaveai.com";
-          note.style.color = "rgba(255,100,100,0.9)";
-        }
-      } catch(err) {
-        btn.textContent = "Become a development partner";
-        btn.disabled = false;
-        note.textContent = "Something went wrong — email us directly at aaron.nelson@handwaveai.com";
-        note.style.color = "rgba(255,100,100,0.9)";
-      }
+<script>
+  // GA4 key events: one delegated listener; every element with data-ga fires its event name.
+  document.addEventListener('click', function(e){
+    var el = e.target.closest('[data-ga]');
+    if(!el || typeof gtag !== 'function') return;
+    gtag('event', el.getAttribute('data-ga'), {
+      location_on_page: el.getAttribute('data-ga-loc') || '',
+      link_url: el.getAttribute('href') || ''
     });
-  </script>
+  });
+</script>
 
 </body>
 </html>
