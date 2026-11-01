@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Every number arrives with its receipts | Handwave AI</title>
-<meta name="description" content="Handwave AI builds and maintains governed reporting on one clean set of records drawn from every system you run; customer identity resolution, field-level lineage, and every number traceable to its source and the decision that produced it.">
+<title>Know. Then lead. | Handwave AI</title>
+<meta name="description" content="Handwave AI makes the systems you already run talk to each other, and keeps it that way, so you get answers instead of shrugs.">
 
 <!-- GA4 -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-V5PC7Z1J04"></script>
@@ -17,414 +17,171 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<!-- Type is provisional: Source Serif 4 in the mock pending Tina's ratification of a brand typeface -->
-<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=Source+Sans+3:wght@400;600;700&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
-
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=Source+Sans+3:wght@400;600;700&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
 <style>
   :root{
-    --olive:#4D5534;
-    --moss:#6B7259;
-    --orange:#DF780D;
-    --ivory:#F7EFDB;
-    --paper:#FAF8F3;
-    --stone:#D9D5CC;
-    --sage:#AAB393;
-    --charcoal:#2D2D2A;
-    --body:#3F4038;
-    --muted:#6E6F64;
-    --serif:'Source Serif 4','Charter',Georgia,serif;
-    --sans:'Source Sans 3','Segoe UI','Liberation Sans',sans-serif;
-    --mono:'IBM Plex Mono','Consolas',ui-monospace,monospace;
-    --measure:38rem;
+    --olive:#4D5534; --moss:#6B7259; --orange:#DF780D; --ivory:#F7EFDB; --paper:#FAF8F3;
+    --stone:#D9D5CC; --sage:#AAB393; --charcoal:#2D2D2A; --muted:#6E6F64;
+    --serif:'Source Serif 4',Georgia,serif; --sans:'Source Sans 3','Segoe UI',sans-serif;
+    --mono:'IBM Plex Mono',ui-monospace,monospace;
     box-sizing:border-box;
-    padding-top:env(safe-area-inset-top,0px);
-    padding-bottom:env(safe-area-inset-bottom,0px);
+    padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
   }
-  html{ scroll-behavior:smooth; scroll-padding-top:calc(4.5rem + env(safe-area-inset-top,0px)); }
   *,*::before,*::after{ box-sizing:inherit; }
-  html,body{ margin:0; padding:0; }
-  body{ background:var(--paper); color:var(--body); font-family:var(--sans);
-        font-size:1.0625rem; line-height:1.6; }
-  img{ max-width:100%; height:auto; }
-  a{ color:var(--olive); }
-  a:focus-visible, button:focus-visible{ outline:3px solid var(--orange); outline-offset:2px; }
+  html,body{ margin:0; height:100%; }
+  body{ background:var(--paper); color:var(--charcoal); font-family:var(--sans);
+    display:flex; flex-direction:column; min-height:100%; overflow-x:hidden; }
+  a:focus-visible, button:focus-visible{ outline:3px solid var(--orange); outline-offset:3px; }
 
-  .wrap{ max-width:68rem; margin:0 auto; padding:0 1.5rem; }
-
-  /* ---------- header ---------- */
-  header.site{
-    position:sticky; top:env(safe-area-inset-top,0px); z-index:10;
-    background:rgba(250,248,243,.94); backdrop-filter:blur(6px);
-    border-bottom:1px solid var(--stone);
-  }
-  .bar{ display:flex; align-items:center; gap:1.5rem; padding:.6rem 0; }
-  .bar img{ height:46px; width:auto; display:block; }
-  nav.primary{ margin-left:auto; display:flex; gap:1.4rem; align-items:center; }
-  nav.primary a{ text-decoration:none; color:var(--body); font-weight:600; font-size:.95rem; }
-  nav.primary a:hover{ color:var(--olive); }
-  nav.primary a.btn, nav.primary a.btn:hover{ color:var(--ivory); }
-  .btn{
-    display:inline-block; text-decoration:none; font-weight:700; font-size:.98rem;
-    background:var(--olive); color:var(--ivory); padding:.62rem 1.15rem;
-    border:1px solid var(--olive); border-radius:2px;
-  }
+  .top{ display:flex; align-items:center; justify-content:space-between; padding:1.3rem clamp(1.2rem,4vw,3rem); position:relative; z-index:3; }
+  .top img{ height:44px; width:auto; display:block; }
+  .btn{ display:inline-block; text-decoration:none; font-weight:700; background:var(--olive); color:var(--ivory);
+    padding:.62rem 1.15rem; border-radius:2px; border:1px solid var(--olive); }
   .btn:hover{ background:#3e452a; }
-  .btn.ghost{ background:transparent; color:var(--olive); }
-  .btn.ghost:hover{ background:var(--ivory); }
-  .btn.on-dark{ background:var(--ivory); color:var(--olive); border-color:var(--ivory); }
-  .btn.on-dark:hover{ background:var(--paper); }
 
-  /* ---------- kicker ---------- */
-  .kicker{
-    font-family:var(--mono); font-size:.72rem; letter-spacing:.16em;
-    text-transform:uppercase; color:var(--moss); margin:0 0 .9rem;
-  }
-  .dark .kicker{ color:var(--sage); }
+  /* the stage: data gets grabbed, ordered, and resolved */
+  .stage{ flex:1; position:relative; display:flex; align-items:center; justify-content:center;
+    min-height:420px; padding:2rem 1.5rem; }
+  .bits{ position:absolute; inset:0; pointer-events:none; z-index:1; }
+  .bit{ position:absolute; left:0; top:0; white-space:nowrap; font-size:.95rem; color:var(--charcoal);
+    background:var(--ivory); border:1px solid var(--stone); border-radius:8px; padding:.45rem .8rem;
+    transition:transform 1.6s cubic-bezier(.6,.05,.25,1), opacity .9s ease, background .4s ease, border-color .4s ease, color .4s ease;
+    will-change:transform,opacity; }
+  .bit.dash{ border-style:dashed; }
+  .bit.ordered{ background:#FFFFFF; border-color:var(--sage); border-left:3px solid var(--olive); border-style:solid;
+    font-family:var(--mono); font-size:.8rem; letter-spacing:.04em; color:var(--olive); }
+  .wave{ position:absolute; top:0; bottom:0; left:-30%; width:30%; z-index:0; pointer-events:none; opacity:0;
+    background:linear-gradient(90deg, rgba(77,85,52,0) 0%, rgba(77,85,52,.10) 50%, rgba(77,85,52,0) 100%); }
+  .playing .wave.go{ animation:sweep 2.2s cubic-bezier(.5,0,.3,1) forwards; }
+  @keyframes sweep{ 0%{ left:-30%; opacity:1; } 100%{ left:110%; opacity:1; } }
 
-  /* ---------- hero ---------- */
-  .hero{ padding:5rem 0 3.5rem; }
-  .hero h1{
-    font-family:var(--serif); font-weight:600; letter-spacing:-.008em;
-    font-size:clamp(2.1rem, 4.6vw, 3.3rem); line-height:1.14;
-    color:var(--charcoal); margin:0 0 1.1rem; max-width:22ch;
-  }
-  .hero .standfirst{
-    font-size:1.17rem; line-height:1.6; color:var(--muted);
-    max-width:var(--measure); margin:0 0 1.8rem;
-  }
-  .hero .rule-accent{ width:3.5rem; height:3px; background:var(--orange);
-    border:0; margin:0 0 1.6rem; }
-  @media (prefers-reduced-motion: no-preference){
-    .hero > *{ opacity:0; transform:translateY(10px);
-      animation:rise .55s ease-out forwards; }
-    .hero > *:nth-child(2){ animation-delay:.08s; }
-    .hero > *:nth-child(3){ animation-delay:.16s; }
-    .hero > *:nth-child(4){ animation-delay:.24s; }
-    @keyframes rise{ to{ opacity:1; transform:none; } }
-  }
+  .resolve{ position:relative; z-index:2; text-align:center; max-width:46rem; }
+  .resolve h1{ font-family:var(--serif); font-weight:600; letter-spacing:-.016em; line-height:1;
+    font-size:clamp(3.4rem,10vw,7.5rem); margin:0 0 1.4rem; color:var(--charcoal); }
+  .resolve p{ font-family:var(--serif); font-size:clamp(1.15rem,2.1vw,1.5rem); line-height:1.4; color:var(--charcoal);
+    margin:0 auto 2rem; max-width:34rem; }
+  .resolve .btn{ font-size:1.02rem; padding:.75rem 1.4rem; }
+  .playing .resolve h1, .playing .resolve p, .playing .resolve .btn{ opacity:0; transform:translateY(10px); }
+  .done .resolve h1, .done .resolve p, .done .resolve .btn{ opacity:1; transform:none;
+    transition:opacity 1s ease, transform 1s ease; }
+  .done .resolve p{ transition-delay:.4s; }
+  .done .resolve .btn{ transition-delay:.75s; }
+  .skip{ position:absolute; right:1.2rem; bottom:1rem; z-index:3; background:none; border:0; cursor:pointer;
+    font-family:var(--mono); font-size:.72rem; letter-spacing:.14em; text-transform:uppercase; color:var(--muted); }
+  .done .skip{ display:none; }
 
-  /* ---------- two doors ---------- */
-  .doors{ padding:0 0 4rem; }
-  .doors .grid{ display:grid; grid-template-columns:1fr 1fr; gap:1.25rem; }
-  .door{
-    display:block; text-decoration:none; padding:2rem 2rem 1.8rem;
-    border-radius:2px; position:relative;
-  }
-  .door h2{
-    font-family:var(--serif); font-weight:600; font-size:1.65rem;
-    line-height:1.2; margin:.4rem 0 .8rem;
-  }
-  .door p{ margin:0 0 1.2rem; font-size:1rem; line-height:1.55; }
-  .door .go{ font-weight:700; font-size:.95rem;
-    border-bottom:2px solid var(--orange); padding-bottom:2px; }
-  .door.light{ background:var(--ivory); border:1px solid var(--stone); color:var(--body); }
-  .door.light h2{ color:var(--charcoal); }
-  .door.light .go{ color:var(--olive); }
-  .door.light:hover{ background:#F2E8CE; }
-  .door.dark{ background:var(--olive); color:var(--ivory); }
-  .door.dark h2{ color:var(--ivory); }
-  .door.dark p{ color:#E7E3D2; }
-  .door.dark .go{ color:var(--ivory); }
-  .door.dark:hover{ background:#434a2d; }
-  .door .kicker{ margin-bottom:.2rem; }
+  /* the pages, at the bottom */
+  .doors{ position:relative; z-index:3; border-top:1px solid var(--stone); padding:1.6rem clamp(1.2rem,4vw,3rem) 1.4rem; }
+  .doors ul{ list-style:none; margin:0 auto; padding:0; max-width:72rem;
+    display:grid; grid-template-columns:repeat(5,1fr); gap:1rem; }
+  .doors a{ display:block; text-decoration:none; padding:1rem 1.1rem; border-radius:12px; border:1px solid var(--stone);
+    background:#FFFFFF; height:100%; transition:border-color .2s ease, transform .2s ease; }
+  .doors a:hover{ border-color:var(--olive); transform:translateY(-2px); }
+  .doors .dt{ display:block; font-family:var(--serif); font-weight:600; font-size:1.2rem; color:var(--charcoal); }
+  .doors .dd{ display:block; color:var(--muted); font-size:.9rem; margin-top:.2rem; }
+  .playing .doors{ opacity:0; }
+  .done .doors{ opacity:1; transition:opacity .8s ease .7s; }
+  .legal{ text-align:center; font-family:var(--mono); font-size:.7rem; letter-spacing:.06em; color:var(--muted); margin:1.2rem 0 0; }
 
-  /* ---------- sections ---------- */
-  section.block{ padding:3.8rem 0; }
-  section.block.tint{ background:var(--ivory);
-    border-top:1px solid var(--stone); border-bottom:1px solid var(--stone); }
-  section.block.dark{ background:var(--olive); color:var(--ivory); }
-  section.block h2{
-    font-family:var(--serif); font-weight:600; font-size:clamp(1.6rem,3vw,2.15rem);
-    line-height:1.2; color:var(--charcoal); margin:0 0 1rem; max-width:26ch;
-  }
-  section.block.dark h2{ color:var(--ivory); }
-  section.block .intro{ max-width:var(--measure); color:var(--muted); margin:0 0 2rem; }
-  section.block.dark .intro{ color:#E7E3D2; }
-
-  /* definition rows, carried from the one-pager */
-  .rows{ max-width:52rem; }
-  .row{ display:grid; grid-template-columns:12.5rem 1fr; gap:1.25rem;
-    padding:1rem 0; border-bottom:1px dotted var(--stone); }
-  .row:last-child{ border-bottom:none; }
-  .row .k{ font-weight:700; color:var(--olive); line-height:1.35; }
-  .row .v{ color:var(--body); line-height:1.55; }
-  .dark .row{ border-bottom-color:#5d6544; }
-  .dark .row .k{ color:var(--sage); }
-  .dark .row .v{ color:#EDEADA; }
-
-  .aside{ font-size:.98rem; color:var(--muted); max-width:var(--measure); margin:1.8rem 0 0; }
-  .dark .aside{ color:#D6D2C0; }
-
-  /* pull quote */
-  .pull{
-    font-family:var(--serif); font-size:clamp(1.25rem,2.4vw,1.6rem); line-height:1.4;
-    color:var(--charcoal); max-width:44rem; margin:0;
-    padding-left:1.4rem; border-left:3px solid var(--orange);
-  }
-
-  /* resources */
-  .res-grid{ display:grid; grid-template-columns:1fr 1fr; gap:1.25rem; max-width:56rem; }
-  .res{ display:block; text-decoration:none; background:var(--paper);
-    border:1px solid var(--stone); padding:1.6rem 1.6rem 1.4rem; border-radius:2px; }
-  .res:hover{ border-color:var(--sage); background:#fff; }
-  .res h3{ font-family:var(--serif); font-weight:600; font-size:1.25rem;
-    color:var(--charcoal); margin:0 0 .5rem; }
-  .res p{ margin:0 0 .9rem; color:var(--muted); font-size:.98rem; line-height:1.55; }
-  .res .go{ color:var(--olive); font-weight:700; font-size:.95rem;
-    border-bottom:2px solid var(--orange); padding-bottom:2px; }
-
-  /* final cta */
-  .cta-final{ text-align:left; }
-  .cta-final .actions{ display:flex; gap:1rem; flex-wrap:wrap; margin-top:1.6rem; }
-  .cta-final .alt{ color:#D6D2C0; font-size:.95rem; align-self:center; }
-  .cta-final .alt a{ color:var(--ivory); }
-
-  /* footer */
-  footer.site{ border-top:1px solid var(--stone); padding:2.2rem 0 2.6rem; }
-  footer.site .cols{ display:flex; align-items:center; gap:1.5rem; flex-wrap:wrap; }
-  footer.site img{ height:38px; width:auto; }
-  footer.site nav{ margin-left:auto; display:flex; gap:1.3rem; }
-  footer.site a{ color:var(--body); text-decoration:none; font-size:.93rem; font-weight:600; }
-  footer.site a:hover{ color:var(--olive); }
-  .legal{ font-family:var(--mono); font-size:.72rem; letter-spacing:.05em;
-    color:var(--muted); margin-top:1.4rem; }
-
-  /* ---------- responsive ---------- */
   @media (max-width:860px){
-    .doors .grid, .res-grid{ grid-template-columns:1fr; }
-    .row{ grid-template-columns:1fr; gap:.25rem; }
-    nav.primary a.navlink{ display:none; }
-    .bar img{ height:36px; }
-    .hero{ padding:3.2rem 0 2.6rem; }
+    .doors ul{ grid-template-columns:1fr 1fr; }
+    .doors li:last-child{ grid-column:1 / -1; }
+    .top img{ height:36px; }
+    .stage{ min-height:460px; }
   }
 </style>
 </head>
-<body>
+<body class="playing">
 
-<header class="site">
-  <div class="wrap bar">
-    <a href="#top" aria-label="Handwave AI home"><img src="handwave_logo_horizontal.png" alt="Handwave AI"></a>
-    <nav class="primary" aria-label="Primary">
-      <a class="navlink" href="#operators">For operators</a>
-      <a class="navlink" href="#partners">For partners</a>
-      <a class="navlink" href="#proof">How you check it</a>
-      <a class="navlink" href="#resources">Resources</a>
-      <a class="btn" href="https://scheduler.zoom.us/aaron-nelson-c1mmxt/30-mins-with-aaron-1" data-ga="book_call_click" data-ga-loc="header">Book a call</a>
-    </nav>
+<div class="top">
+  <a href="index.html" aria-label="Handwave AI home"><img src="handwave_logo_horizontal.png" alt="Handwave AI"></a>
+  <a class="btn" href="https://scheduler.zoom.us/aaron-nelson-c1mmxt/30-mins-with-aaron-1" data-ga="book_call_click" data-ga-loc="splash_top">Book a call</a>
+</div>
+
+<main class="stage" id="stage">
+  <div class="wave" aria-hidden="true"></div>
+  <div class="bits" aria-hidden="true"></div>
+  <div class="resolve">
+    <h1>Know. Then&nbsp;lead.</h1>
+    <p>Your systems don't know about each other. We make them talk, and we keep it that way, so you get answers instead of shrugs.</p>
+    <a class="btn" href="https://scheduler.zoom.us/aaron-nelson-c1mmxt/30-mins-with-aaron-1" data-ga="book_call_click" data-ga-loc="splash">Book a call</a>
   </div>
-</header>
-
-<main id="top">
-
-  <!-- HERO -->
-  <section class="hero">
-    <div class="wrap">
-      <p class="kicker">Managed analytics · Governed data</p>
-      <h1>The next time someone questions a number, the answer is already in the report.</h1>
-      <hr class="rule-accent">
-      <p class="standfirst">Handwave AI builds your reporting on one clean set of records drawn from every
-      system you run. Every figure arrives with its provenance: which system it came from, what was
-      applied to it, and who approved the logic. When two of your systems disagree, you see the gap
-      instead of a quiet guess.</p>
-      <a class="btn" href="https://scheduler.zoom.us/aaron-nelson-c1mmxt/30-mins-with-aaron-1" data-ga="book_call_click" data-ga-loc="hero">Book a call</a>
-    </div>
-  </section>
-
-  <!-- THE FORK: two doors, early -->
-  <section class="doors" aria-label="Choose your path">
-    <div class="wrap">
-      <div class="grid">
-        <a class="door light" href="#operators" data-ga="door_operators_click">
-          <p class="kicker">Operators</p>
-          <h2>You run the business.</h2>
-          <p>The reports you actually need, built with you and kept current. You don't assemble
-          anything, you don't learn a new tool, and you don't hire anybody onto your payroll.</p>
-          <span class="go">See how it works for operators</span>
-        </a>
-        <a class="door dark" href="#partners" data-ga="door_partners_click">
-          <p class="kicker">Analysts · Agencies · Consultancies</p>
-          <h2>You deliver the analysis.</h2>
-          <p>A governed data layer stood up for each client you serve. You run the analysis on top,
-          in your own tools, and the hours that went to assembly go to the work your clients pay for.</p>
-          <span class="go">See how it works for partners</span>
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <!-- OPERATORS -->
-  <section class="block tint" id="operators">
-    <div class="wrap">
-      <p class="kicker">For operators</p>
-      <h2>Managed analytics, handled.</h2>
-      <p class="intro">Most operations run on five or ten systems that were never built to talk to
-      each other. Getting a straight answer means somebody exports it all and reconciles it by hand,
-      then does it again next month. We take that over.</p>
-      <div class="rows">
-        <div class="row"><div class="k">One customer, one record</div>
-          <div class="v">Your reservation system, your CRM, and your POS each spell the same person
-          differently. We resolve them into a single governed record per person; every merge is
-          reviewed by a human and reversible. The industry calls this master data management; you
-          get it without running an MDM program.</div></div>
-        <div class="row"><div class="k">We define it with you</div>
-          <div class="v">A working session to pin down the questions that matter and how each number
-          is calculated. Your definitions, written down and enforced.</div></div>
-        <div class="row"><div class="k">Reporting you actually use</div>
-          <div class="v">We build the dashboards and reports that answer your questions, and we keep
-          them working as the business changes. What we commit to is the work, not a fixed list of
-          outputs, because nobody can name the right reports before seeing the data.</div></div>
-        <div class="row"><div class="k">It stays current</div>
-          <div class="v">Refreshed on your schedule. When a definition needs to change because the
-          business changed, we change it; that is part of keeping it current, not a new project.</div></div>
-        <div class="row"><div class="k">Beyond that scope</div>
-          <div class="v">Deeper analysis is quoted separately, or connect your own tools directly;
-          Power BI, Tableau, Excel, your accountant.</div></div>
-      </div>
-      <p class="aside">Who this is for: operators big enough to have real questions and too small to
-      justify a data team. Multi-location restaurants and hospitality groups, resorts and destination
-      organizations.</p>
-    </div>
-  </section>
-
-  <!-- PARTNERS -->
-  <section class="block dark" id="partners">
-    <div class="wrap">
-      <p class="kicker">For analysts, agencies, and consultancies</p>
-      <h2>The foundation is ours to run. The analysis, and the client, stay yours.</h2>
-      <p class="intro">You already do the thinking your clients pay for. What eats your week is
-      getting their data into a state where thinking is possible. Handwave AI stands up a governed
-      layer per client, then steps back.</p>
-      <div class="rows">
-        <div class="row"><div class="k">A foundation per client</div>
-          <div class="v">Each client you bring gets its own governed layer; their systems, their
-          definitions, written down and enforced.</div></div>
-        <div class="row"><div class="k">You run it</div>
-          <div class="v">Connect your own tools; Power BI, Tableau, SQL. The analysis, the
-          deliverables, and the relationship carry your name, not ours.</div></div>
-        <div class="row"><div class="k">Setup, then handoff</div>
-          <div class="v">We help stand it up and we maintain the layer underneath. The work on top
-          is yours from day one.</div></div>
-        <div class="row"><div class="k">In your terms</div>
-          <div class="v">Master data management for person entities: match and merge with
-          human-reviewed survivorship, field-level lineage, reversible decisions, and a
-          metadata-driven governed model underneath. Your client gets MDM-grade customer records
-          without standing up an MDM program, and you get to say so in the deliverable.</div></div>
-        <div class="row"><div class="k">Capacity for more</div>
-          <div class="v">The hours you spend on exports and reconciliation become hours on analysis,
-          and room for the next client you take on.</div></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- PROOF: shared spine -->
-  <section class="block" id="proof">
-    <div class="wrap">
-      <p class="kicker">How you can check the numbers</p>
-      <h2>Whichever door you came through, the numbers work the same way.</h2>
-      <div class="rows">
-        <div class="row"><div class="k">A person reviews it</div>
-          <div class="v">Every decision about how your systems fit together is approved by a human
-          before it reaches you, and you see the reasoning.</div></div>
-        <div class="row"><div class="k">Any number is traceable</div>
-          <div class="v">Back to the system it came from, and back to the decision that produced it.</div></div>
-        <div class="row"><div class="k">Systems that disagree</div>
-          <div class="v">When two of your systems report the same thing differently, we show you the
-          gap rather than quietly picking one.</div></div>
-        <div class="row"><div class="k">Wrong calls reverse</div>
-          <div class="v">Every decision is stored. If one turns out to be wrong, it rolls back
-          without rebuilding anything.</div></div>
-      </div>
-      <p class="aside" style="margin-top:2.4rem">
-        <span class="pull" style="display:block">We will never tell you a number is right; a number is
-        only as accurate as the system it came from, and those systems are yours. What we can show
-        you, on demand, is exactly where it came from and exactly what was applied to it.</span>
-      </p>
-    </div>
-  </section>
-
-  <!-- PRICING SHAPE -->
-  <section class="block tint" id="pricing">
-    <div class="wrap">
-      <p class="kicker">What it costs</p>
-      <h2>Two numbers: the platform, and the reporting on top.</h2>
-      <p class="intro">The platform is $3,000 per month, sized to the number of systems you run.
-      That covers bringing your systems together, resolving identity, enforcing your definitions,
-      and keeping every number traceable to its source.</p>
-      <p class="intro">The reporting built and maintained on top is quoted separately, because what
-      one operation needs is nothing like the next. Standing it up is a one-time fee that depends on
-      the state of your systems; we price it once we have seen them, and you see the number before
-      anything starts.</p>
-      <p class="intro">No long-term contract required, and the monthly number does not move unless
-      your business does.</p>
-    </div>
-  </section>
-
-  <!-- RESOURCES -->
-  <section class="block" id="resources">
-    <div class="wrap">
-      <p class="kicker">Not ready to talk yet?</p>
-      <h2>Understand it first.</h2>
-      <p class="intro">No pitch, no form. Two honest reads for anyone weighing how to fix their
-      data, including how to tell a real fix from an expensive one.</p>
-      <div class="res-grid">
-        <a class="res" href="data-guide.html" data-ga="guide_open">
-          <h3>You don't have a data problem. You have a data-is-everywhere problem.</h3>
-          <p>One customer, five records, four systems that don't talk. What the mess really is, what
-          "fixed" looks like, and how to choose between a consultant, a platform, and a managed
-          service.</p>
-          <span class="go">Read the guide</span>
-        </a>
-        <a class="res" href="buyer-checklist.html" data-ga="checklist_open">
-          <h3>Before you spend a dollar: a buyer's checklist.</h3>
-          <p>Five questions to ask any vendor, the red flags that mean you'll be left holding the
-          bag, and the honest cases when a managed service is the wrong answer.</p>
-          <span class="go">Open the checklist</span>
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <!-- FINAL CTA -->
-  <section class="block dark cta-final" id="talk">
-    <div class="wrap">
-      <p class="kicker">Get started</p>
-      <h2>If this is your situation, we want to talk.</h2>
-      <p class="intro">A first call is thirty minutes; you bring the questions your tools can't
-      answer, and we'll tell you honestly whether this fits.</p>
-      <div class="actions">
-        <a class="btn on-dark" href="https://scheduler.zoom.us/aaron-nelson-c1mmxt/30-mins-with-aaron-1" data-ga="book_call_click" data-ga-loc="footer_cta">Book a call</a>
-        <span class="alt">or email
-          <a href="mailto:aaron.nelson@handwaveai.com" data-ga="email_click">aaron.nelson@handwaveai.com</a></span>
-      </div>
-    </div>
-  </section>
-
+  <button class="skip" type="button">Skip</button>
 </main>
 
-<footer class="site">
-  <div class="wrap">
-    <div class="cols">
-      <img src="handwave_logo_horizontal.png" alt="Handwave AI">
-      <nav aria-label="Footer">
-        <a href="https://linkedin.com/company/handwaveai">LinkedIn</a>
-        <a href="mailto:aaron.nelson@handwaveai.com" data-ga="email_click">Contact</a>
-      </nav>
-    </div>
-    <p class="legal">© 2026 Handwave AI, Inc.</p>
-  </div>
-</footer>
+<nav class="doors" aria-label="Pages">
+  <ul>
+    <li><a href="how-it-works.html" data-ga="door_click" data-ga-loc="how"><span class="dt">How it works</span><span class="dd">The platform, at a glance</span></a></li>
+    <li><a href="pricing.html" data-ga="door_click" data-ga-loc="pricing"><span class="dt">Pricing</span><span class="dd">What it costs</span></a></li>
+    <li><a href="about.html" data-ga="door_click" data-ga-loc="about"><span class="dt">About</span><span class="dd">The people behind it</span></a></li>
+    <li><a href="partners.html" data-ga="door_partners_click" data-ga-loc="splash"><span class="dt">Partners</span><span class="dd">For firms that serve operators</span></a></li>
+    <li><a href="resources.html" data-ga="door_click" data-ga-loc="resources"><span class="dt">Resources</span><span class="dd">Notes and reads</span></a></li>
+  </ul>
+  <p class="legal">Answers, with receipts. · © 2026 Handwave AI, Inc.</p>
+</nav>
 
 <script>
-  // GA4 key events: one delegated listener; every element with data-ga fires its event name.
+  // GA4: one delegated listener for every data-ga element
   document.addEventListener('click', function(e){
     var el = e.target.closest('[data-ga]');
     if(!el || typeof gtag !== 'function') return;
-    gtag('event', el.getAttribute('data-ga'), {
-      location_on_page: el.getAttribute('data-ga-loc') || '',
-      link_url: el.getAttribute('href') || ''
-    });
+    gtag('event', el.getAttribute('data-ga'), { location_on_page: el.getAttribute('data-ga-loc') || '', link_url: el.getAttribute('href') || '' });
   });
-</script>
 
+  // The splash: scattered data is grabbed, put in order, and resolved into the line. About six and a half seconds.
+  (function(){
+    var body = document.body;
+    var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    function finish(){ body.classList.remove('playing'); body.classList.add('done'); var b=document.querySelector('.bits'); if(b) b.innerHTML=''; }
+    if(reduce){ finish(); return; }
+
+    var words = ['Bookings','The register','The books','Payroll','The schedule','Spreadsheets',
+                 'Surveys','Email list','Invoices','Gift cards','Comps and voids','That one report'];
+    var stage = document.getElementById('stage'), layer = stage.querySelector('.bits'), wave = stage.querySelector('.wave');
+    var W = stage.clientWidth, H = stage.clientHeight, narrow = W < 640;
+    var timers = [];
+    function at(ms, fn){ timers.push(setTimeout(fn, ms)); }
+
+    if(narrow) words = words.slice(0,10);
+    var bits = words.map(function(w, i){
+      var el = document.createElement('span'); el.className = 'bit' + (i % 4 === 3 ? ' dash' : ''); el.textContent = w;
+      layer.appendChild(el); return el;
+    });
+
+    // 1. the mess: scattered, tilted, drifting in
+    bits.forEach(function(el){
+      var x = Math.random()*(W-170)+10, y = Math.random()*(H-60)+10, r = (Math.random()*16-8).toFixed(1);
+      el.style.opacity = '0';
+      el.style.transform = 'translate('+x+'px,'+(y-24)+'px) rotate('+r+'deg)';
+      el.dataset.x = x; el.dataset.y = y; el.dataset.r = r;
+    });
+    at(40, function(){ bits.forEach(function(el, i){
+      setTimeout(function(){ el.style.opacity = '1'; el.style.transform = 'translate('+el.dataset.x+'px,'+el.dataset.y+'px) rotate('+el.dataset.r+'deg)'; }, i*120);
+    }); });
+
+    // 2. the hand: a wave passes and pulls everything into order
+    at(2900, function(){
+      wave.classList.add('go');
+      var cols = narrow ? 2 : 4, cw = narrow ? Math.min(172,(W-24)/2) : 182, rh = narrow ? 42 : 50;
+      var rows = Math.ceil(bits.length/cols), gx = (W - cols*cw)/2, gy = (H - rows*rh)/2;
+      bits.forEach(function(el, i){
+        var c = i % cols, r = Math.floor(i/cols);
+        el.classList.add('ordered');
+        el.style.width = (cw-12)+'px'; el.style.textAlign = 'left'; el.style.overflow = 'hidden'; el.style.textOverflow = 'ellipsis';
+        el.style.transitionDelay = (c*70 + r*55)+'ms';
+        el.style.transform = 'translate('+(gx + c*cw)+'px,'+(gy + r*rh)+'px) rotate(0deg)';
+      });
+    });
+
+    // 3. resolved: the ordered data folds into one answer
+    at(5600, function(){
+      bits.forEach(function(el){ el.style.transitionDelay='0ms'; el.style.opacity='0';
+        el.style.transform = 'translate('+(W/2-60)+'px,'+(H/2-16)+'px) scale(.4)'; });
+    });
+    at(6500, finish);
+
+    stage.querySelector('.skip').addEventListener('click', function(){ timers.forEach(clearTimeout); finish(); });
+  })();
+</script>
 </body>
 </html>
