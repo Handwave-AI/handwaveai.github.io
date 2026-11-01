@@ -173,7 +173,9 @@
     .note-list li::before{content:"";position:absolute;left:0;top:22px;width:8px;height:8px;border-radius:50%;background:var(--orange)}
     .note-pull{margin:28px 0;padding:22px 26px;background:var(--deep);color:#f2ede2;border-radius:16px;border-top:4px solid var(--orange);font-family:Georgia,serif;font-size:21px;line-height:1.4}
     .note-last{font-family:Georgia,serif;font-size:22px;color:var(--olive);margin-top:30px}
-    .note-dl{margin-top:36px;padding-top:24px;border-top:1px solid var(--border)}
+    .note-next{margin-top:36px;padding-top:24px;border-top:1px solid var(--border);font-family:Georgia,serif;font-size:19px;color:var(--olive)}
+    .note-next a{color:var(--olive);text-decoration:underline;text-underline-offset:4px}
+    .note-dl{margin-top:16px}
     @media (max-width:760px){.note{margin-top:48px}.note p{font-size:16.5px}.note-pull{font-size:19px;padding:18px 20px}}
   
 /* site header, shared with the rest of handwaveai.com */
@@ -411,6 +413,7 @@ nav.primary a.navlink.current{ color:var(--olive); text-decoration:underline; te
       <p>The powerful part of bringing the logic out of the codebase is that the context is no longer stuck inside the code. Validation can look at where that number shows up across the business, in every report and every system that touches it, and ask whether it still tracks to reality. That is work no person can do at the speed it needs doing, and it is what the machine should be spending its attention on once it is no longer busy reinventing what the number was supposed to mean.</p>
       <p class="note-last">The machine can do the work. It cannot own the meaning.</p>
 
+      <p class="note-next">Next in the series: <a href="the-destination-vs-the-journey.html" data-ga="note_next" data-ga-loc="memory_end">The destination vs the journey</a></p>
       <p class="note-dl"><a class="doc-link" href="where-your-business-keeps-its-memory.pdf" target="_blank" rel="noopener" data-ga="note_pdf_open" data-ga-loc="note_end">Download the note as a PDF <span aria-hidden="true">↗</span></a></p>
     </article>
   </main>
