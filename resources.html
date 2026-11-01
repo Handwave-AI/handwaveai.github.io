@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Resources | Handwave AI</title>
+<meta name="description" content="How to check any number Handwave AI gives you, plus notes and two reads before you call anyone.">
+
+<!-- GA4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-V5PC7Z1J04"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-V5PC7Z1J04');
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<!-- Type is provisional: Source Serif 4 pending Tina's ratification of a brand typeface -->
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400&family=Source+Sans+3:wght@400;600;700&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400&family=Source+Sans+3:wght@400;600;700&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="site.css">
+<style>
+  nav.primary a.navlink.current{ color:var(--olive); text-decoration:underline; text-underline-offset:6px; }
+
+
+  .open .intro{ margin-bottom:0; max-width:40rem; }
+  .library{ display:grid; grid-template-columns:repeat(3,1fr); gap:1.2rem; margin-top:2.2rem; }
+  .read{ display:flex; flex-direction:column; text-decoration:none; background:#FFFFFF; border:1px solid var(--stone);
+    border-radius:14px; padding:1.5rem 1.5rem 1.4rem; color:var(--charcoal); transition:border-color .2s ease, transform .2s ease; }
+  .read:hover{ border-color:var(--olive); transform:translateY(-2px); }
+  .read span{ display:block; }
+  .read .rk{ font-family:var(--mono); font-size:.7rem; letter-spacing:.16em; text-transform:uppercase; color:var(--moss); margin-bottom:.8rem; }
+  .read .rt{ font-family:var(--serif); font-weight:600; font-size:1.35rem; line-height:1.25; margin-bottom:.7rem; }
+  .read .rs{ color:var(--body,#3F4038); font-size:.97rem; line-height:1.5; margin-bottom:1rem; }
+  .read .ra{ margin-top:auto; font-weight:700; color:var(--olive); font-size:.95rem; }
+  .read .ra::after{ content:" \2192"; }
+  .read.note{ background:var(--olive); border-color:var(--olive); color:var(--ivory); }
+  .read.note:hover{ background:#434a2d; }
+  .read.note .rk{ color:var(--sage); }
+  .read.note .rt{ color:var(--ivory); }
+  .read.note .rs{ color:#E7E3D2; }
+  .read.note .rq{ font-family:var(--serif); font-style:italic; color:var(--sage); font-size:1rem; margin-bottom:1rem; }
+  .read.note .ra{ color:var(--ivory); }
+  @media (max-width:980px){ .library{ grid-template-columns:1fr; } }
+</style>
+</head>
+<body>
+
+<header class="site">
+  <div class="wrap bar">
+    <a class="home" href="index.html" aria-label="Handwave AI home"><img src="handwave_logo_horizontal.png" alt="Handwave AI"></a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="primary-nav">Menu</button>
+    <nav class="primary" id="primary-nav" aria-label="Primary">
+      <a class="navlink" href="how-it-works.html">How it works</a>
+      <a class="navlink" href="pricing.html">Pricing</a>
+      <a class="navlink" href="partners.html">Partners</a>
+      <a class="navlink" href="about.html">About</a>
+      <a class="navlink current" href="resources.html" aria-current="page">Resources</a>
+      <a class="btn" href="https://scheduler.zoom.us/aaron-nelson-c1mmxt/30-mins-with-aaron-1" data-ga="book_call_click" data-ga-loc="header">Book a call</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top" class="spined">
+
+  <!-- THE LIBRARY -->
+  <section class="block open" id="library">
+    <div class="wrap">
+      <p class="kicker">Resources</p>
+      <h1>Three reads before you call anyone, including us.</h1>
+      <p class="intro">What the mess is, how to buy a fix without getting burned, and why the decisions your business runs on need a home.</p>
+
+      <div class="library">
+        <a class="read" href="data-guide.html" data-ga="guide_open" data-ga-loc="resources">
+          <span class="rk">The guide · 8 minutes</span>
+          <span class="rt">You don't have a data problem. You have a data-is-everywhere problem.</span>
+          <span class="rs">Why it's normal, what fixed actually looks like, why the usual fixes disappoint, and how to choose between a consultant, a platform, and a managed service.</span>
+          <span class="ra">Read the guide</span>
+        </a>
+        <a class="read" href="buyer-checklist.html" data-ga="checklist_open" data-ga-loc="resources">
+          <span class="rk">The checklist · 5 minutes</span>
+          <span class="rt">Before you spend a dollar on fixing your data.</span>
+          <span class="rs">Five questions to ask any vendor, the red flags that leave you holding the bag, the green flags of a real fix, and when a managed service is the wrong answer.</span>
+          <span class="ra">Read the checklist</span>
+        </a>
+        <a class="read note" href="where-your-business-keeps-its-memory.html">
+          <!-- TODO: point this href at the note page's real filename when it publishes -->
+          <span class="rk">A note on building with AI</span>
+          <span class="rt">Where your business keeps its memory.</span>
+          <span class="rs">People leave. Code changes. Models reset. The decisions your business runs on shouldn't disappear with them.</span>
+          <span class="rq">“The machine can do the work. It cannot own the meaning.”</span>
+          <span class="ra">Read the note</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7. HOW YOU CAN CHECK THE NUMBERS -->
+  <section class="block dark" id="check">
+    <div class="wrap">
+      <p class="kicker">How you can check the numbers</p>
+      <h2>The next time someone questions a number, the answer is already in the report.</h2>
+      <p class="intro">Every number comes with its receipt: which system it came from, what was done
+      to it, and who signed off.</p>
+      <div class="rows">
+        <div class="row"><div class="k">A person reviews it</div>
+          <div class="v">Every decision about how your systems fit together is approved by a human
+          before it reaches you, and you see the reasoning.</div></div>
+        <div class="row"><div class="k">Any number can be traced</div>
+          <div class="v">Back to the system it came from, and back to the decision that produced it.</div></div>
+        <div class="row"><div class="k">Systems that disagree</div>
+          <div class="v">When two of your systems report the same thing differently, we show you the
+          gap rather than quietly picking one.</div></div>
+        <div class="row"><div class="k">Wrong calls reverse</div>
+          <div class="v">Every decision is stored. If one turns out to be wrong, it rolls back
+          without rebuilding anything.</div></div>
+      </div>
+      <p class="never">We will never tell you a number is right. We will show you where it came from and what was done to it.</p>
+
+    </div>
+  </section>
+
+  <!-- 9. BOOK A CALL -->
+  <section class="block tint talk" id="talk">
+    <div class="wrap">
+      <h2>Book a call</h2>
+      <p class="intro">Thirty minutes. Bring the problem you're trying to solve, and we'll tell you
+      what it would take to get your data working on it.</p>
+      <div class="actions">
+        <a class="btn" href="https://scheduler.zoom.us/aaron-nelson-c1mmxt/30-mins-with-aaron-1" data-ga="book_call_click" data-ga-loc="footer_cta">Book a call</a>
+        <span class="alt">or email <a href="mailto:aaron.nelson@handwaveai.com" data-ga="email_click" data-ga-loc="footer_cta">aaron.nelson@handwaveai.com</a></span>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site">
+  <div class="wrap">
+    <div class="cols">
+      <a href="index.html"><img src="handwave_logo_horizontal.png" alt="Handwave AI"></a>
+      <nav aria-label="Footer">
+        <a href="how-it-works.html">How it works</a>
+        <a href="pricing.html">Pricing</a>
+        <a href="partners.html">Partners</a>
+        <a href="resources.html">Resources</a>
+        <a href="about.html">About</a>
+        <a href="https://linkedin.com/company/handwaveai">LinkedIn</a>
+        <a href="mailto:aaron.nelson@handwaveai.com" data-ga="email_click" data-ga-loc="footer">Contact</a>
+      </nav>
+    </div>
+    <p class="legal">Answers, with receipts. · © 2026 Handwave AI, Inc.<br>Based in the Denver area, Colorado.</p>
+  </div>
+</footer>
+
+<script>
+  // GA4 key events: one delegated listener; every element with data-ga fires its event name.
+  document.addEventListener('click', function(e){
+    var el = e.target.closest('[data-ga]');
+    if(!el || typeof gtag !== 'function') return;
+    gtag('event', el.getAttribute('data-ga'), {
+      location_on_page: el.getAttribute('data-ga-loc') || '',
+      link_url: el.getAttribute('href') || ''
+    });
+  });
+
+  // Mobile menu
+  (function(){
+    var btn = document.querySelector('.menu-toggle');
+    var nav = document.getElementById('primary-nav');
+    if(!btn || !nav) return;
+    btn.addEventListener('click', function(){
+      var open = nav.classList.toggle('open');
+      btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+      btn.textContent = open ? 'Close' : 'Menu';
+    });
+    nav.addEventListener('click', function(e){
+      if(e.target.closest('a')){ nav.classList.remove('open'); btn.setAttribute('aria-expanded','false'); btn.textContent='Menu'; }
+    });
+  })();
+</script>
+</body>
+</html>

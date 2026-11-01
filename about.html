@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Who we are | Handwave AI</title>
+<meta name="description" content="The people behind Handwave AI: data architecture and governance, platform engineering, and analytics; technology brings the information together, people make sure it means something.">
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-V5PC7Z1J04"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-V5PC7Z1J04');
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=Source+Sans+3:wght@400;600;700&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --olive:#4D5534; --moss:#6B7259; --orange:#DF780D; --ivory:#F7EFDB;
+    --paper:#FAF8F3; --stone:#D9D5CC; --sage:#AAB393; --charcoal:#2D2D2A;
+    --body:#3F4038; --muted:#6E6F64;
+    --serif:'Source Serif 4','Charter',Georgia,serif;
+    --sans:'Source Sans 3','Segoe UI','Liberation Sans',sans-serif;
+    --mono:'IBM Plex Mono','Consolas',ui-monospace,monospace;
+    box-sizing:border-box;
+    padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+  }
+  *,*::before,*::after{ box-sizing:inherit; }
+  html,body{ margin:0; padding:0; }
+  body{ background:var(--paper); color:var(--body); font-family:var(--sans);
+    font-size:1.0625rem; line-height:1.6; }
+  img{ max-width:100%; height:auto; }
+  a{ color:var(--olive); }
+  a:focus-visible{ outline:3px solid var(--orange); outline-offset:3px; }
+  .wrap{ max-width:84rem; margin:0 auto; padding:0 2.25rem; }
+  header.site{ position:sticky; top:env(safe-area-inset-top,0px); z-index:10;
+    background:rgba(250,248,243,.94); backdrop-filter:blur(6px); border-bottom:1px solid var(--stone); }
+  .bar{ display:flex; align-items:center; gap:1.5rem; padding:.6rem 0; }
+  .bar img{ height:46px; width:auto; display:block; }
+  nav.primary{ margin-left:auto; display:flex; gap:1.4rem; align-items:center; }
+  nav.primary a{ text-decoration:none; color:var(--body); font-weight:600; font-size:.95rem; }
+  nav.primary a:hover{ color:var(--olive); }
+  .btn{ display:inline-block; text-decoration:none; font-weight:700; font-size:.98rem;
+    background:var(--olive); color:var(--ivory); padding:.62rem 1.15rem;
+    border:1px solid var(--olive); border-radius:2px; }
+  .btn:hover{ background:#3e452a; }
+  nav.primary a.btn, nav.primary a.btn:hover{ color:var(--ivory); }
+  .kicker{ font-family:var(--mono); font-size:.72rem; letter-spacing:.16em;
+    text-transform:uppercase; color:var(--moss); margin:0 0 calc(.9rem + 8px); }
+  main{ padding:calc(3.6rem + 7px) 0 1rem; }
+  h1{ font-family:var(--serif); font-weight:600; letter-spacing:-.012em;
+    font-size:clamp(2rem,3.8vw,3rem); line-height:1.12; color:var(--charcoal);
+    margin:0 0 1.1rem; max-width:22ch; }
+  .intro{ max-width:38rem; color:var(--muted); font-size:1.15rem; line-height:1.62; margin:0 0 1.2rem; }
+  .pullline{ font-family:var(--serif); font-size:1.4rem; line-height:1.4; color:var(--charcoal);
+    max-width:34rem; margin:2rem 0 2.6rem; padding-left:1.2rem; border-left:3px solid var(--olive); }
+  .founders{ display:grid; grid-template-columns:repeat(3,1fr); gap:2.2rem; margin:2.4rem 0 3rem; }
+  .founder img{ width:100%; aspect-ratio:1/1; object-fit:cover; border-radius:2px;
+    border:1px solid var(--stone); display:block; margin-bottom:.8rem; background:var(--ivory); }
+  .founder .fname{ font-family:var(--serif); font-weight:600; font-size:1.3rem;
+    color:var(--charcoal); margin:0; }
+  .founder .frole{ color:var(--moss); margin:.15rem 0 .6rem; font-weight:600; font-size:.95rem; }
+  .founder p.fbio{ margin:0; font-size:1rem; line-height:1.6; }
+  section.close{ background:var(--olive); color:var(--ivory); margin-top:3.4rem; padding:3.2rem 0; }
+  section.close h2{ font-family:var(--serif); font-weight:600; font-size:clamp(1.5rem,2.6vw,1.9rem);
+    color:var(--ivory); margin:0 0 .8rem; }
+  section.close p{ color:#E7E3D2; margin:0 0 1.2rem; max-width:38rem; }
+  section.close .btn{ background:var(--ivory); color:var(--olive); border-color:var(--ivory); }
+  section.close .btn:hover{ background:var(--paper); }
+  footer.site{ border-top:1px solid var(--stone); padding:2.2rem 0 2.6rem; }
+  footer.site .cols{ display:flex; align-items:center; gap:1.5rem; flex-wrap:wrap; }
+  footer.site img{ height:38px; width:auto; }
+  footer.site nav{ margin-left:auto; display:flex; gap:1.3rem; }
+  footer.site a{ color:var(--body); text-decoration:none; font-size:.93rem; font-weight:600; }
+  footer.site a:hover{ color:var(--olive); }
+  .legal{ font-family:var(--mono); font-size:.72rem; letter-spacing:.05em; color:var(--muted); margin-top:1.4rem; }
+  @media (max-width:860px){
+    .wrap{ padding:0 1.4rem; }
+    nav.primary a.navlink{ display:none; }
+    .bar img{ height:36px; }
+    .founders{ grid-template-columns:1fr; gap:2rem; }
+    .founder img{ max-width:260px; }
+    main{ padding-top:3rem; }
+  }
+
+  .why{ margin:2.6rem 0 1rem; padding:2.2rem 2.4rem 2rem; background:var(--olive); border-radius:16px;
+    border-top:4px solid var(--orange); max-width:44rem; box-shadow:0 22px 46px -26px rgba(45,45,42,.55); }
+  .why blockquote{ margin:0; }
+  .why blockquote p{ font-family:var(--serif); font-weight:600; font-size:clamp(1.25rem,2.1vw,1.6rem);
+    line-height:1.35; color:#E7E3D2; margin:0 0 .35rem; }
+  .why blockquote p:first-child{ color:var(--ivory); }
+  .why blockquote p.turn{ color:var(--ivory); font-size:clamp(1.6rem,2.8vw,2.1rem); margin:1.1rem 0 0; }
+  .why figcaption{ margin-top:1.4rem; font-family:var(--mono); font-size:.72rem; letter-spacing:.16em;
+    text-transform:uppercase; color:var(--sage); }
+  .pullline{ margin-top:0; }
+  @media (max-width:640px){ .why{ padding:1.6rem 1.4rem 1.5rem; } }
+  /* page spine, same as the content pages */
+  @media (min-width:1280px){
+    main.spined{ position:relative; }
+    main.spined::before{ content:""; position:absolute; top:0; bottom:0; left:calc(max(0px, 50% - 42rem) + .9rem); width:2px; background:var(--sage); opacity:.7; }
+    main.spined .wrap{ position:relative; }
+    main.spined .kicker{ position:relative; }
+    main.spined .kicker::before{ content:""; position:absolute; left:calc(-1 * (2.25rem - .9rem) - 5px); margin-top:.15em; width:12px; height:12px; border-radius:50%;
+      background:var(--olive); border:2px solid var(--paper); box-shadow:0 0 0 2px var(--sage); }
+    main.spined section.close .kicker::before{ border-color:var(--olive); background:var(--ivory); }
+  }
+  .kicker.team{ margin-top:2.6rem; }
+</style>
+</head>
+<body>
+
+<header class="site">
+  <div class="wrap bar">
+    <a href="index.html" aria-label="Handwave AI home"><img src="handwave_logo_horizontal.png" alt="Handwave AI"></a>
+    <nav class="primary" aria-label="Primary">
+      <a class="navlink" href="how-it-works.html">How it works</a>
+      <a class="navlink" href="pricing.html">Pricing</a>
+      <a class="navlink" href="partners.html">Partners</a>
+      <a class="navlink" href="about.html" aria-current="page" style="color:var(--olive)">About</a>
+      <a class="navlink" href="resources.html">Resources</a>
+      <a class="btn" href="https://scheduler.zoom.us/aaron-nelson-c1mmxt/30-mins-with-aaron-1" data-ga="book_call_click" data-ga-loc="about_header">Book a call</a>
+    </nav>
+  </div>
+</header>
+
+<main class="spined">
+  <div class="wrap">
+    <p class="kicker">Who we are</p>
+    <h1>Real people behind the platform.</h1>
+    <p class="intro">Handwave AI brings your systems together, builds the reporting on top, and
+    keeps it that way. Three people own that, and each owns a different part. It started with this:</p>
+
+    <figure class="why">
+      <blockquote>
+        <p>I have seen the mess.</p>
+        <p>The budget overages in builds and maintenance.</p>
+        <p>The thin analytics delivery.</p>
+        <p>The questioning of the final report in the C-suite.</p>
+        <p class="turn">I don't want that for you.</p>
+      </blockquote>
+      <figcaption>Aaron Nelson, Founder &amp; CEO</figcaption>
+    </figure>
+
+    <p class="kicker team">The team</p>
+    <!-- Headshots: drop aaron_headshot.jpg, troup_headshot.jpg, naveen_headshot.jpg in the repo root -->
+    <div class="founders">
+      <div class="founder">
+        <img src="aaron_headshot.jpg" alt="Aaron Nelson">
+        <p class="fname">Aaron Nelson</p>
+        <p class="frole">Founder &amp; CEO</p>
+        <p class="fbio">A career in data across hospitality, real estate, energy, and government.
+        Aaron sets the direction, holds the architecture, and owns every client relationship.</p>
+      </div>
+      <div class="founder">
+        <img src="troup_headshot.jpg" alt="Troup Miller">
+        <p class="fname">Troup Miller</p>
+        <p class="frole">Co-founder · CIO</p>
+        <p class="fbio">In the AI era, we have found that the tool gives us fast, confident, appealing results, because it
+        prioritizes a happy user over a correct answer. AI is a force multiplier in the world of high-trust,
+        high-confidence analytics, but it is only part of the equation. At Handwave AI, our mission is to channel
+        this raw power through extensive human experience and expertise to deliver on our core promise: answers
+        you can trust, because you know where every answer came from.</p>
+      </div>
+      <div class="founder">
+        <img src="naveen_headshot.jpg" alt="Naveen Chandra">
+        <p class="fname">Naveen Chandra</p>
+        <p class="frole">Analytics</p>
+        <p class="fbio">Analytics and business value: what to measure, what a number is worth to
+        the person acting on it, and what an operator actually wants when they ask for a report.</p>
+      </div>
+    </div>
+    <p class="pullline">Technology brings the information together. People make sure it means something.</p>
+  </div>
+
+  <section class="close">
+    <div class="wrap">
+      <p class="kicker">Talk to us</p>
+      <h2>Bring the problem you're trying to solve.</h2>
+      <p>A first call is thirty minutes. We'll tell you what it would take to get your data working
+      on it, and honestly whether we fit.</p>
+      <a class="btn" href="https://scheduler.zoom.us/aaron-nelson-c1mmxt/30-mins-with-aaron-1" data-ga="book_call_click" data-ga-loc="about_close">Book a call</a>
+    </div>
+  </section>
+</main>
+
+<footer class="site">
+  <div class="wrap">
+    <div class="cols">
+      <a href="index.html"><img src="handwave_logo_horizontal.png" alt="Handwave AI"></a>
+      <nav aria-label="Footer">
+        <a href="https://linkedin.com/company/handwaveai">LinkedIn</a>
+        <a href="mailto:aaron.nelson@handwaveai.com" data-ga="email_click">Contact</a>
+      </nav>
+    </div>
+    <p class="legal">Answers, with receipts. · © 2026 Handwave AI, Inc. · Based in the Denver area</p>
+  </div>
+</footer>
+
+<script>
+  document.addEventListener('click', function(e){
+    var el = e.target.closest('[data-ga]');
+    if(!el || typeof gtag !== 'function') return;
+    gtag('event', el.getAttribute('data-ga'), {
+      location_on_page: el.getAttribute('data-ga-loc') || '',
+      link_url: el.getAttribute('href') || ''
+    });
+  });
+</script>
+
+</body>
+</html>
