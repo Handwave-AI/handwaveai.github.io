@@ -60,9 +60,11 @@
     font-size:clamp(3.4rem,10vw,7.5rem); margin:0 0 1.4rem; color:var(--charcoal); }
   .resolve p{ font-family:var(--serif); font-size:clamp(1.15rem,2.1vw,1.5rem); line-height:1.4; color:var(--charcoal);
     margin:0 auto 1.4rem; max-width:36rem; }
-  .three{ list-style:none; margin:0 auto 2rem; padding:0; max-width:34rem; text-align:left; display:grid; gap:.45rem; }
-  .three li{ position:relative; padding-left:1.1rem; color:var(--charcoal); font-size:1.02rem; line-height:1.45; }
-  .three li::before{ content:""; position:absolute; left:0; top:.62em; width:6px; height:6px; border-radius:50%; background:var(--olive); }
+  .three{ display:grid; grid-template-columns:repeat(3,1fr); gap:1.6rem; max-width:48rem; margin:0 auto 2rem; text-align:left; }
+  .three .t{ border-top:2px solid var(--olive); padding-top:.7rem; }
+  .three b{ display:block; font-family:var(--serif); font-weight:600; font-size:1.12rem; color:var(--charcoal); margin-bottom:.25rem; }
+  .three span{ display:block; color:var(--muted); font-size:.95rem; line-height:1.45; }
+  @media (max-width:640px){ .three{ grid-template-columns:1fr; gap:1rem; max-width:22rem; } }
   .resolve .btn{ font-size:1.02rem; padding:.75rem 1.4rem; }
   .playing .resolve h1, .playing .resolve p, .playing .resolve .three, .playing .resolve .btn{ opacity:0; transform:translateY(10px); }
   .done .resolve h1, .done .resolve p, .done .resolve .three, .done .resolve .btn{ opacity:1; transform:none;
@@ -77,7 +79,7 @@
   /* the pages, at the bottom */
   .doors{ position:relative; z-index:3; border-top:1px solid var(--stone); padding:1.6rem clamp(1.2rem,4vw,3rem) 1.4rem; }
   .doors ul{ list-style:none; margin:0 auto; padding:0; max-width:72rem;
-    display:grid; grid-template-columns:repeat(4,1fr); gap:1rem; }
+    display:grid; grid-template-columns:repeat(5,1fr); gap:1rem; }
   .doors a{ display:block; text-decoration:none; padding:1rem 1.1rem; border-radius:12px; border:1px solid var(--stone);
     background:#FFFFFF; height:100%; transition:border-color .2s ease, transform .2s ease; }
   .doors a:hover{ border-color:var(--olive); transform:translateY(-2px); }
@@ -89,6 +91,7 @@
 
   @media (max-width:860px){
     .doors ul{ grid-template-columns:1fr 1fr; }
+    .doors li:last-child{ grid-column:1 / -1; }
     .top img{ height:36px; }
     .stage{ min-height:460px; }
   }
@@ -107,11 +110,11 @@
   <div class="resolve">
     <h1>Know. Then&nbsp;lead.</h1>
     <p class="line">When your numbers don’t agree and it’s costing you money, we find out why, fix it, and keep it fixed.</p>
-    <ul class="three">
-      <li>People who have done this inside a business like yours bring your systems together.</li>
-      <li>We find the cause of the number nobody can explain.</li>
-      <li>Then we keep it connected, so it stays fixed.</li>
-    </ul>
+    <div class="three">
+      <div class="t"><b>People who have done it</b><span>inside a business like yours bring your systems together.</span></div>
+      <div class="t"><b>The cause, found</b><span>the number nobody can explain, traced to where it came from.</span></div>
+      <div class="t"><b>Kept fixed</b><span>we keep it connected, so it stays that way.</span></div>
+    </div>
     <a class="btn" href="https://scheduler.zoom.us/aaron-nelson-c1mmxt/30-mins-with-aaron-1" data-ga="book_call_click" data-ga-loc="splash">Book a call</a>
   </div>
   <button class="skip" type="button">Skip</button>
@@ -120,6 +123,7 @@
 <nav class="doors" aria-label="Pages">
   <ul>
     <li><a href="how-it-works.html" data-ga="door_click" data-ga-loc="how"><span class="dt">How it works</span><span class="dd">What you get, and how it runs</span></a></li>
+    <li><a href="how-we-work.html" data-ga="door_click" data-ga-loc="how_we_work"><span class="dt">How we work</span><span class="dd">Step by step, fixed price each</span></a></li>
     <li><a href="about.html" data-ga="door_click" data-ga-loc="about"><span class="dt">About</span><span class="dd">The people behind it</span></a></li>
     <li><a href="partners.html" data-ga="door_partners_click" data-ga-loc="splash"><span class="dt">Partners</span><span class="dd">For firms that serve operators</span></a></li>
     <li><a href="resources.html" data-ga="door_click" data-ga-loc="resources"><span class="dt">Resources</span><span class="dd">Notes and reads</span></a></li>
@@ -140,7 +144,10 @@
     var body = document.body;
     var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     function finish(){ body.classList.remove('playing'); body.classList.add('done'); var b=document.querySelector('.bits'); if(b) b.innerHTML=''; }
-    if(reduce){ finish(); return; }
+    var seen=false; try{ seen=localStorage.getItem('hw_splash_seen')==='1'; }catch(e){}
+    var replay=/[?&]replay/.test(location.search);
+    if(reduce || (seen && !replay)){ finish(); return; }
+    try{ localStorage.setItem('hw_splash_seen','1'); }catch(e){}
 
     var words = ['Bookings','The register','The books','Payroll','The schedule','Spreadsheets',
                  'Surveys','Email list','Invoices','Gift cards','Comps and voids','That one report'];

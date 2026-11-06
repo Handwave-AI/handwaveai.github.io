@@ -86,8 +86,11 @@
     main{ padding-top:3rem; }
   }
 
-  .why{ margin:2.6rem 0 1rem; padding:2.2rem 2.4rem 2rem; background:var(--olive); border-radius:16px;
-    border-top:4px solid var(--orange); max-width:44rem; box-shadow:0 22px 46px -26px rgba(45,45,42,.55); }
+  .why{ margin:2.6rem 0 1rem; padding:2.4rem 2.6rem 2.2rem; background:var(--olive); border-radius:16px;
+    border-top:4px solid var(--orange); max-width:none; box-shadow:0 22px 46px -26px rgba(45,45,42,.55);
+    display:grid; grid-template-columns:1fr auto; gap:1.5rem 3rem; align-items:end; }
+  .why figcaption{ margin-top:0; text-align:right; white-space:nowrap; }
+  @media (max-width:760px){ .why{ grid-template-columns:1fr; } .why figcaption{ text-align:left; } }
   .why blockquote{ margin:0; }
   .why blockquote p{ font-family:var(--serif); font-weight:600; font-size:clamp(1.25rem,2.1vw,1.6rem);
     line-height:1.35; color:#E7E3D2; margin:0 0 .35rem; }
@@ -117,7 +120,7 @@
     <a href="index.html" aria-label="Handwave AI home"><img src="handwave_logo_horizontal.png" alt="Handwave AI"></a>
     <nav class="primary" aria-label="Primary">
       <a class="navlink" href="how-it-works.html">How it works</a>
-      <a class="navlink" href="pricing.html">Pricing</a>
+      <a class="navlink" href="how-we-work.html">How we work</a>
       <a class="navlink" href="partners.html">Partners</a>
       <a class="navlink" href="about.html" aria-current="page" style="color:var(--olive)">About</a>
       <a class="navlink" href="resources.html">Resources</a>
@@ -129,9 +132,8 @@
 <main class="spined">
   <div class="wrap">
     <p class="kicker">Who we are</p>
-    <h1>Real people behind the platform.</h1>
-    <p class="intro">Handwave AI brings your systems together, builds the reporting on top, and
-    keeps it that way. Three people own that, and each owns a different part. It started with this:</p>
+    <h1>Real people behind the work.</h1>
+    <p class="intro">We have run data, governance and analytics inside operating businesses in hospitality and leisure, and we have sat in the chair your operator sits in. We know what a number is worth to the person who has to act on it, and what happens when it is wrong. We built what we run for you because we were tired of doing the same work by hand for a different client every year and watching it go stale. It started with this:</p>
 
     <figure class="why">
       <blockquote>
@@ -170,9 +172,10 @@
       <div class="founder">
         <img src="naveen_headshot.jpg" alt="Naveen Chandra">
         <p class="fname">Naveen Chandra</p>
-        <p class="frole">Analytics</p>
-        <p class="fbio">Analytics and business value: what to measure, what a number is worth to
-        the person acting on it, and what an operator actually wants when they ask for a report.</p>
+        <p class="frole">Analytics and business value</p>
+        <p class="fbio">Naveen leads the conversations with owners who do not speak data. He knows what a number is
+        worth to the person who has to act on it, what an operator actually wants when they ask for a report, and
+        how to tell the difference between a finding and a dashboard.</p>
       </div>
     </div>
     <p class="pullline">Technology brings the information together. People make sure it means something.</p>
