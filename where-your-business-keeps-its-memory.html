@@ -172,6 +172,8 @@
     .note-list li{position:relative;padding:12px 0 12px 22px;border-bottom:1px solid var(--border);font-size:16.5px;line-height:1.6;color:var(--ink)}
     .note-list li::before{content:"";position:absolute;left:0;top:22px;width:8px;height:8px;border-radius:50%;background:var(--orange)}
     .note-pull{margin:28px 0;padding:22px 26px;background:var(--deep);color:#f2ede2;border-radius:16px;border-top:4px solid var(--orange);font-family:Georgia,serif;font-size:21px;line-height:1.4}
+    .note-stage{margin:56px 0 4px;font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--sage);font-weight:700}
+    .note-stage span{color:var(--muted);margin-right:12px;font-weight:600}
     .note-last{font-family:Georgia,serif;font-size:22px;color:var(--olive);margin-top:30px}
     .note-next{margin-top:36px;padding-top:24px;border-top:1px solid var(--border);font-family:Georgia,serif;font-size:19px;color:var(--olive)}
     .note-next a{color:var(--olive);text-decoration:underline;text-underline-offset:4px}
@@ -365,9 +367,11 @@ nav.primary a.navlink.current{ color:var(--olive); text-decoration:underline; te
       <header class="note-head">
         <p class="note-kicker">The note</p>
         <h2>Where your business keeps its memory</h2>
-        <p class="note-dek">Nobody loves governance. The reason to care about it was never compliance; it was that the business's decisions were living somewhere nobody could read.</p>
+        <p class="note-dek">Nobody loves governance. We care about it because the decisions the business runs on end up somewhere nobody can read.</p>
         <p class="note-by">Aaron Nelson · Founder &amp; CEO, Handwave AI</p>
       </header>
+
+      <p class="note-stage"><span>01</span>Where meaning hides</p>
 
       <h3>We all had a Sam</h3>
       <p>They were the person who had everything in their brain, years of organically developing code perfectly designed to their job. Logic carefully curated to fulfill exactly one use case, and it provided that stability day over day.</p>
@@ -384,32 +388,33 @@ nav.primary a.navlink.current{ color:var(--olive); text-decoration:underline; te
         <li>You stop asking new questions, because every new question means a new build; nothing gets reused, everything gets made again from scratch, and the build is never small.</li>
       </ul>
 
-      <h3>Now give Sam's job to the thing writing code today</h3>
+      <h3>Now give Sam’s job to the thing writing code today</h3>
       <p>The logic lives in the repo and in the “head” of a model, which may or may not have memory of the equation it placed in your pipeline, or of the calculation it rendered on your website just so.</p>
       <p>Sam was where the business kept its memory. The model is where it keeps it now, except this memory resets between questions. Sam could be asked, and Sam answered the same way twice. Ask again next quarter and the model may decide differently, and nothing about the output will tell you that it did.</p>
-      <blockquote class="note-pull">Sam's logic was undocumented and at least consistent. The new arrangement is undocumented, inconsistent, and faster than anyone can review.</blockquote>
-
-      <h3>But we gave it the context</h3>
-      <p>Maybe Sam helped onboard the model, with carefully crafted prompts and documents; the business rules, the edge cases, the reasons behind the odd ones.</p>
-      <p>Context informs a decision. It does not record one. Afterward there is no way to know which part of Sam's handoff the model used, which it inferred around, or whether what it produced reflects what Sam meant or what the schema suggested that morning. The artifact that comes out is code, and code is a consequence of a decision rather than evidence of it.</p>
+      <blockquote class="note-pull">Sam’s logic was undocumented and at least consistent. The new arrangement is undocumented, inconsistent, and faster than anyone can review.</blockquote>
+      <p>Maybe Sam helped onboard the model, with carefully crafted prompts and documents; the business rules, the edge cases, the reasons behind the odd ones. Context helps the model decide. It doesn’t keep a record of what it decided. Afterward there is no way to know which part of Sam’s handoff the model used, which it inferred around, or whether what it produced reflects what Sam meant or what it guessed from how the data was laid out. What comes out is code, and the code shows what was built, not why.</p>
 
       <h3>Which sounds like this</h3>
       <ul class="note-list">
         <li>Why did metric X swing so hard with the last production release?</li>
         <li>The quarterly went out, and a board member is asking why one line does not match what they remember from last year. Nobody changed it on purpose. That is worse than an error, because an error has a cause you can name.</li>
-        <li>We are spending our entire token allotment reviewing the codebase for every place metric Z appears, because investor relations needs it updated.</li>
-        <li>We only found it because somebody remembered the old number from Sam's report.</li>
+        <li>We’re paying someone for a week to find every place metric Z appears, because investor relations needs it changed.</li>
+        <li>We only found it because somebody remembered the old number from Sam’s report.</li>
       </ul>
-      <p>And all of that is what happens after the problem is found. The quiet version is that it is not.</p>
+      <p>And all of that is what happens after the problem is found. Sometimes nobody finds it at all.</p>
 
-      <h3>What to do about it</h3>
-      <p>This will not fix your tooling, your staffing or your appetite for shortcuts. It is the one I would fund first, and the cheapest insurance an AI budget can buy.</p>
-      <blockquote class="note-pull">Decide what a number means once, in the open, with a person's name on it; then keep that decision somewhere anyone can read without being technical.</blockquote>
-      <p>Start with the handful of numbers the business actually runs on, which is a shorter list than anyone expects. Settle what each one counts, what it excludes, which date it belongs to, and who gets to change it, in a sentence a person outside the technical team can argue with. It can be as plain as this: Net Sales = Gross Sales less Voids and Comps. Owned by the CFO. Changed only through her, and the change is recorded. A general manager can disagree with that sentence; nobody can disagree with a query.</p>
+      <p class="note-stage"><span>02</span>Make the decision visible</p>
+
+      <h3>A decision anyone can read</h3>
+      <p>There’s one fix I’d fund first. It won’t fix your tools or your staffing, but it’s the cheapest insurance an AI budget can buy.</p>
+      <blockquote class="note-pull">Decide what a number means once, in the open, with a person’s name on it; then keep that decision somewhere anyone can read without being technical.</blockquote>
+      <p>Start with the handful of numbers the business actually runs on, which is a shorter list than anyone expects. Settle what each one counts, what it excludes, which date it belongs to, and who gets to change it, in a sentence a person outside the technical team can argue with. It can be as plain as this: <em>Net Sales = Gross Sales less Voids and Comps. Owned by the CFO. Changed only through her, and the change is recorded.</em> A general manager can disagree with that sentence; nobody can disagree with a query.</p>
       <p>Then keep it where it can be seen. A decision that sinks back into the code is gone again, no matter how carefully it was made the first time, and when the code and the definition disagree, the code is wrong by default.</p>
 
+      <p class="note-stage"><span>03</span>Let the systems follow</p>
+
       <h3>And the machine gets better work</h3>
-      <p>Point it at the decision rather than asking it to infer one; it does the work, it does not make the call.</p>
+      <p>Give it the decision instead of asking it to guess. It does the work; a person made the call. Reports carry the definition they were built from, and pipelines follow it.</p>
       <p>The powerful part of bringing the logic out of the codebase is that the context is no longer stuck inside the code. Validation can look at where that number shows up across the business, in every report and every system that touches it, and ask whether it still tracks to reality. That is work no person can do at the speed it needs doing, and it is what the machine should be spending its attention on once it is no longer busy reinventing what the number was supposed to mean.</p>
       <p class="note-last">The machine can do the work. It cannot own the meaning.</p>
 
@@ -428,7 +433,7 @@ nav.primary a.navlink.current{ color:var(--olive); text-decoration:underline; te
       <span class="detail-label" id="detailSubhead">Why it matters</span>
       <p class="detail-text" id="detailExplanation"></p>
       <div class="detail-example" id="detailExample"></div>
-      <a href="where-your-business-keeps-its-memory.pdf" target="_blank" rel="noopener" class="detail-cta">Read the full argument <span aria-hidden="true">↗</span></a>
+      <a href="#note" class="detail-cta">Read the full argument <span aria-hidden="true">↓</span></a>
       <div class="detail-bottom"><span>Handwave AI · Answers, with receipts.</span><button type="button" id="backToDiagram">Back to diagram</button></div>
     </aside>
   </div>
